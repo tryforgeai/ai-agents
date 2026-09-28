@@ -1,3 +1,7 @@
 .DS_Store
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
+
+# 课程材料（SupportVectors 版权，标注"不得分享任何部分"）—— 只保留本地
+*.pdf
+course/ai-agents-week-02/strange-lamp/

@@ -243,7 +243,76 @@ Rerank 只解决候选排序。记忆检索多两个轴、多一道工序：
 
 ---
 
+## Week 02 追加 · 提示词注入与指令层级
+
+> 加入于 2026-09-27（Week 02 当天）。起因：课上讨论 system prompt 与 user prompt 的边界，
+> 追问"模型被训练听从 system prompt 是哪里说的"，顺出这一串。
+
+### ⭐⭐ The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions
+`arXiv:2404.13208` · Wallace, Xiao, Leike, Weng, Heidecke, Beutel（OpenAI）· 2024-04-19
+
+**为什么读**：Week 02 Act VI（金库）那一幕的**学术底座**。已核查作者与摘要。
+
+摘要核心句：
+
+> *"LLMs often consider **system prompts** (e.g., text from an application developer) to be the **same priority** as text from untrusted users and third parties."*
+
+**关键含义 —— 比课上讲得更狠**：
+
+- system / user 的区分**不是架构隔离**，只是 chat template 里的特殊 token，拼成同一段序列
+- 模型"听 system 的话"是**被训练出来的倾向**，强度取决于厂商做了多少功夫
+- 正因为默认不够强，OpenAI 才要**专门造合成数据 + SFT + RLHF** 去训一套层级出来：
+  **system（开发者）> user（用户）> 工具/网页返回的内容**
+- 在 GPT-3.5 上微调后，**对训练时没见过的攻击类型也显著更稳健**，基础能力几乎不退化
+
+> 🔑 **这篇论文本身就是"光靠写 prompt 守不住"的证明。**
+> 工程上的解法是改训练和改架构，不是把守卫的话写得更严厉。
+> ↔ 幻灯片 p83：*"你没法靠对守卫耳语来守住一个秘密。"*
+
+📌 `hf papers read 2404.13208` 可直接抓取。
+
+---
+
+### Can LLMs Separate Instructions From Data? And What Do We Even Mean By That?
+`arXiv:2403.06833` · 2024
+
+标题就是 Act VI 的问题本身。把"指令 / 数据能否分离"当成一个**可定义、可测量**的问题来处理——
+而不是当成一个可以靠措辞绕过去的工程细节。
+
+---
+
+### InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated LLM Agents
+`arXiv:2403.02691` · 2024
+
+**间接**提示词注入的 benchmark，专门针对**带工具的 agent** —— 正是 lethal trifecta 那条线。
+"间接"是关键词：攻击不来自用户，来自 agent 自己去读的网页 / 邮件 / 文档。
+
+> ↔ Willison 的三条腿：私有数据 × **不可信内容** × 对外通信。这篇测的就是中间那条。
+
+---
+
+### 必读（Week 02 讲义指定，非论文）
+
+| 文献 | 用处 |
+| --- | --- |
+| Sheila Teo · *How I Won Singapore's GPT-4 Prompt Engineering Competition* | COSTAR 出处，Act III 后读 |
+| Krakovna et al. · *Specification Gaming: The Flip Side of AI Ingenuity* | reward hacking 案例库（DeepMind） |
+| Clark & Amodei · *Faulty Reward Functions in the Wild* | CoastRunners 赛艇 |
+| Simon Willison · *The Lethal Trifecta for AI Agents* | Act VI 的框架来源 |
+
+### 通向 Week 03（提示词优化）
+
+- **DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines** `arXiv:2310.03714` · Khattab et al. · ICLR 2024
+  → 注意藏在明处的前提：**一个 metric**
+- **GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning** `arXiv:2507.19457` · Agrawal et al. · ICLR 2026 (Oral)
+  → 今天的手工爬山，做成不知疲倦的版本
+- **LoRA: Low-Rank Adaptation of Large Language Models** · Hu et al. · ICLR 2022 · `arXiv:2106.09685`
+  → 升级阶梯上 prompting 的**上一级**；Civitai 那些标签背后的东西
+
+---
+
 ## 相关
 
 - [`ai-agents-week-00/ref-harness-engineering.zh.md`](ai-agents-week-00/ref-harness-engineering.zh.md) —— Addy Osmani《Agent Harness Engineering》精读（p.22 那句的出处）
 - [`ai-agents-week-01/delta.zh.md`](ai-agents-week-01/delta.zh.md)
+- [`ai-agents-week-02/index.md`](ai-agents-week-02/index.md) —— 提示词周
