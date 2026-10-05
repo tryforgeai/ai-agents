@@ -311,8 +311,90 @@ Rerank 只解决候选排序。记忆检索多两个轴、多一道工序：
 
 ---
 
+## Week 03 追加 · Skills
+
+> 来源：Week 03 当天的参考资料 deck（自称"约 50 个来源"，按六类组织）。
+> 这里记录我截到的那几页；链接和编号照抄屏幕，**未逐条打开核对**。
+
+### 这份清单的组织方式（值得照抄）
+
+| | 内容 | 什么时候用 |
+| --- | --- | --- |
+| 1 · Docs | 规范、官方 how-to、公告 | 你在构建或配置时 |
+| 2 · Examples | 技能库、目录、市场 | 你想看真实的 skill 时 |
+| 3 · Security | 扫描器、事故、攻击研究 | **在你安装任何东西之前** |
+| 4 · Research | benchmark、市场研究、行业报告 | 你需要证据时 |
+| 5 · Scale & future | 检索、上下文、自改进库 | 做进阶或前瞻工作时 |
+| 6 · Course | Week 3 的 deck 和演示代码 | 复习和做练习 |
+
+🔑 **按「什么时候用」而不是按主题组织**——这本身就是今天讲的 description 思路：**不是分类，是触发条件。**
+
+### 1 · Docs
+
+| 资源 | 用它来 |
+| --- | --- |
+| **Agent Skills specification** · agentskills.io/specification | 每个 skill 必须遵守的规则：文件夹布局、必填与选填字段、三层加载 |
+| **skills-ref validator** · github.com/agentskills/agentskills | **CI 里做自动格式检查**；`skills-ref validate <folder>` |
+| **Skill authoring best practices** · docs.claude.com/…/agent-skills/best-practices | 决定要写多细：简洁度、自由度、evaluation-first |
+| **skill-creator** · github.com/anthropics/skills/tree/main/skills/skill-creator | 现成的工作流及其推理依据 |
+| **Claude Code: skills** · code.claude.com/docs/en/skills | 列表预算、加载后的持久性、compaction、forked context、allowed-tools、作用域与优先级 |
+| **Claude Code: plugins** · code.claude.com/docs/en/plugins | plugin 打包什么、市场、安装作用域、上下文成本、信任 |
+| **Steering Claude Code** · claude.com/…claude-code-skills-hooks-rules-subagents-and-more | **何时用 CLAUDE.md / rules / skills / subagents / hooks；哪些是建议性的、哪些是强制的** |
+| **Prompt caching** · platform.claude.com/docs/en/build-with-claude/prompt-caching | **让一张大 skill 清单变便宜** |
+
+### 2 · Examples · 精选库
+
+| 库 | 内容 | 实测数据（截图当时） |
+| --- | --- | --- |
+| **anthropics/skills** | 文档类（docx/pptx/xlsx/pdf）、设计、企业、meta skill；多为 Apache 2.0 | 参考实现 |
+| **obra/superpowers** | 一整套工程方法做成互链的 skill：头脑风暴、规划、TDD、调试、评审 | **295k ⭐ / 26.4k fork / 683 commits / v6.4.2**；带 claude / codex / cursor / devin / hermes / kimi / muse / opencode / pi 九套 plugin |
+| **trailofbits/skills** | 约四十个**窄**安全 skill：差异评审、Semgrep 规则、供应链审计 | **窄触发 + 自带 verifier 的范本** |
+| **VoltAgent/awesome-agent-skills** | 厂商官方 skill 的精选索引：Sentry、Stripe、Cloudflare、Microsoft… | **35.2k ⭐ / 3.8k fork / 711 commits**；自称 **1000+**，README 写着 *"Hand-picked, not AI-slop generated"* |
+
+> ⭐ **obra/superpowers 的 295k star** 值得单独注意——这是"把一整套工程方法做成互链 skill"的最大规模案例，而且它**为九个不同客户端各维护一套 plugin**。
+> ⭐ **trailofbits 的"约四十个窄 skill"**是 Router 模式的实物：不做一个大的安全审计 skill，做四十个各管一件事的。
+
+### 3 · Security
+
+见 Week 02 的注入专题，外加：**Snyk Security Labs · ToxicSkills**（2026-02，审计 3,984 个公开 skill：**36.8%** 至少一个缺陷，**13.4%** 严重）。
+
+### 4 · Research 🔥
+
+| 论文 | 编号 | 核心数字 |
+| --- | --- | --- |
+| **SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks** | `arXiv:2602.12670` (2026-02-13) | **84 个任务、11 个领域**；**精选 skill +16.2 分**；**自生成 skill −1.3**；**2–3 个 skill 胜过 4+ 个** |
+| **Agent Skill Evaluation and Evolution** | `arXiv:2606.11435` | 综述六个 benchmark 家族和四种 skill 演化方式；点名缺口 |
+| **SkillCorpus** | `arXiv:2607.15557` | **821K 原始 skill 精选到 96,401**，**19 个质量标记**；增益温和 |
+| **Inside the Skill Market** | `arXiv:2607.09065` | **11,497 个软件工程 skill**：结构、生命周期阶段、token 大小 |
+| **Skill Retrieval Augmentation for Agentic AI** | `arXiv:2604.24594` | **26,262 条语料库**；**need-awareness Δ = +0.1pp** → [[SRA 论文精读笔记]] ✅ 已精读 |
+
+> 🔥 **SkillsBench 那三个数字是今天最该记的实证：**
+>
+> - **自生成 skill 是负收益（−1.3）** —— 让 agent 自己写 skill 不等于变强
+> - **2–3 个胜过 4+ 个** —— **这是 κ 的直接实测**，而且拐点低得惊人
+> - 精选 skill **+16.2** vs 自生成 **−1.3** —— **差的不是数量，是策展**
+>
+> ↔ 和 SRA 合起来看：**SkillsBench 说"少而精"，SRA 说"大库里模型不会挑"。两篇指向同一个结论——瓶颈在选择，不在拥有。**
+
+⚠️ **SkillsBench 作者单位很分散**（BenchFlow / Amazon / Ohio State / Dartmouth / Stanford / UC Davis / CMU / UC Berkeley / Independent），引用时留意这是个松散协作，不是单一实验室。
+
+### 5 · Foundations（讲义引用的六篇）
+
+| 论文 | 编号 | 用它来 |
+| --- | --- | --- |
+| **Voyager** | `2305.16291` | 正典的技能库 agent → [[Voyager 论文精读笔记]] ✅ |
+| **Reflexion** | `2303.11366` | 不用梯度的学习 |
+| **PAL: Program-aided Language Models** | `2211.10435` | **`scripts/` 存在的理由** |
+| **Toolformer** | `2302.04761` | 工具使用的起点 |
+| **Gorilla** | `2305.15334` | 早期的大规模工具调用 |
+| **Options framework** · Sutton, Precup & Singh | *Artificial Intelligence* 112, 1999 | **skill 的理论**：initiation set / policy / termination |
+
+---
+
 ## 相关
 
 - [`ai-agents-week-00/ref-harness-engineering.zh.md`](ai-agents-week-00/ref-harness-engineering.zh.md) —— Addy Osmani《Agent Harness Engineering》精读（p.22 那句的出处）
 - [`ai-agents-week-01/delta.zh.md`](ai-agents-week-01/delta.zh.md)
 - [`ai-agents-week-02/index.md`](ai-agents-week-02/index.md) —— 提示词周
+- [`ai-agents-week-03/index.md`](ai-agents-week-03/index.md) —— Skillcraft
+- [[Voyager 论文精读笔记]] · [[SRA 论文精读笔记]] · [[Generative Agents 论文精读笔记]] · [[ReAct 论文精读笔记]]
