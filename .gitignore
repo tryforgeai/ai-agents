@@ -5,3 +5,11 @@
 # 课程材料（SupportVectors 版权，标注"不得分享任何部分"）—— 只保留本地
 *.pdf
 course/ai-agents-week-02/strange-lamp/
+course/ai-agents-week-02/google_adk_basics/
+course/ai-agents-week-03/genies-kitchen/
+course/ai-agents-week-03/genies-kitchen.zip
+course/ai-agents-week-03/when-the-time-is-right-kit/
+
+# 虚拟环境
+.venv/
+__pycache__/
