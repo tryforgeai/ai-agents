@@ -1,0 +1,20 @@
+#-------------------------------------------------------------------------------------------
+#  Copyright (c) 2016-2025.  SupportVectors AI Lab
+#
+#  This code is part of the AI Lab Book companion repository.
+#  It is released under the MIT License - see the LICENSE file at the repository root.
+#
+#  Copyright (c) 2016-2026 SupportVectors AI Lab.
+#
+#  Author: SupportVectors AI Training
+#-------------------------------------------------------------------------------------------
+
+cohort: Spring 2025
+paths: 
+  results_dir: results
+
+glossary:
+  # How many terms the COSTAR glossary builder asks the LLM to shortlist and
+  # then define+refine. Each term costs two further LLM calls (draft + refinement),
+  # so keep it small for a quick demo run.
+  num_terms: 3

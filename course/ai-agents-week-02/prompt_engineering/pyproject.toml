@@ -1,0 +1,18 @@
+[project]
+name = "prompt_engineering"
+version = "0.1.0"
+description = "Advanced prompting techniques and vision-language prompting (notebook lab)"
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = [
+    "litellm>=1.61",
+    "svlearn-bootcamp>=0.1.7",
+]
+
+# This lab is notebooks-only (no importable package): tell uv not to build one.
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

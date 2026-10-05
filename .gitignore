@@ -13,3 +13,9 @@ course/ai-agents-week-03/when-the-time-is-right-kit/
 # 虚拟环境
 .venv/
 __pycache__/
+
+# 本地备份与密钥配置
+.local-backups/
+.env
+.env.*
+!.env.example
