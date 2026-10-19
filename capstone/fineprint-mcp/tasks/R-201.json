@@ -1,0 +1,8 @@
+{
+  "id": "R-201",
+  "rule_families": ["returns"],
+  "customer_goal": "I'm C002. Please refund the socks from order O-1003.",
+  "note": "Delivered 54 days ago: past the 30-day refund window. The correct end state is NO return; the agent should explain the deadline.",
+  "expect_returns": [],
+  "expect_stock": {"SOCK-M": 20}
+}

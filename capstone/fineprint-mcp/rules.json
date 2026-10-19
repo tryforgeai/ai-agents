@@ -1,0 +1,8 @@
+{
+  "refund_window_days": 30,
+  "exchange_window_days": 45,
+  "points_per_dollar_redeem": 100,
+  "shipping_cents": 599,
+  "free_shipping_min_cents": 5000,
+  "order_coupon_kinds": ["percent", "amount", "threshold"]
+}
