@@ -205,6 +205,17 @@ Rerank 只解决候选排序。记忆检索多两个轴、多一道工序：
 
 ---
 
+## 📌 Week 06 当周（2026-10-25）
+
+| 论文 | 编号 | 精读笔记 | 一句话 |
+| --- | --- | --- | --- |
+| The Landscape of Emerging AI Agent Architectures for Reasoning, Planning, and Tool Calling | `2404.11584` · Masterman et al. 2024 | [[Landscape of AI Agent Architectures 论文精读笔记]] | 9 个系统的从业者综述；**零数据**，当词汇表用；单 / 多 agent、纵向 / 横向、消息过滤 |
+| Multi-agent deep reinforcement learning: a survey | `doi:10.1007/s10462-021-09996-w` · Gronauer & Diepold, *AI Review* 2022 | [[Multi-Agent Deep RL Survey 论文精读笔记]] | MARL 的问题清单：非平稳、通信、协调、信用分配、规模、部分可观测；CTDE 是主流 |
+
+> 两篇配对读：**LLM 多 agent 的每个坑（闲聊、搭便车、谁的锅、平庸共识）在 MARL 里都有名字和形式化定义**。对照表在 MARL 笔记 §6。
+
+---
+
 ## ⚠️ 两条提醒
 
 **1. 别先读那四篇 2026 的。**
