@@ -1,0 +1,37 @@
+[project]
+name = "newsletter-google-adk"
+version = "0.1.0"
+description = "Google ADK 2.x multi-agent newsletter lab: parallel collection, MCP tools, scraping, HITL review, and a critic/refiner loop."
+readme = "README.md"
+requires-python = ">=3.12"
+# Pinned to the versions this lab was tested with. ADK's Workflow / RequestInput
+# APIs change between minor releases, so upgrade deliberately.
+dependencies = [
+    "google-adk>=2.10",
+    "svlearn-bootcamp>=0.1.7",
+    "litellm>=1.0.0",
+    "arize-phoenix>=12.6.1",
+    "arize-phoenix-otel>=0.13.1",
+    "openinference-instrumentation-google-adk>=0.1.6",
+    "google-cloud-aiplatform[adk,agent-engines]>=1.122.0",
+    "arize-otel>=0.10.0",
+    "fastmcp>=2.12.5",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+# If you also build sdists and want data included:
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    # ... other includes like README, pyproject.toml, etc.
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/newsletter"]

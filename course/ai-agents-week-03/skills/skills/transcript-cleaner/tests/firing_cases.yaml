@@ -1,0 +1,13 @@
+# Firing test cases for transcript-cleaner (instructor firing-test pattern).
+cases:
+  - prompt: >-
+      Here is a noisy Assembly.ai transcript from yesterday's lecture.
+      Please de-mangle it and fix the jargon.
+    should_fire: true
+  - prompt: >-
+      Clean this speech-to-text output — GRPO became "group O" again.
+    should_fire: true
+  - prompt: Summarize this transcript in three bullet points.
+    should_fire: false
+  - prompt: Translate this lecture transcript to Spanish.
+    should_fire: false

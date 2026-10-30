@@ -1,0 +1,22 @@
+# Script tests for quarterly-report: run scripts/check_totals.py the way the
+# agent does (metrics JSON as an argument, no stdin). Deterministic, no LLM.
+cases:
+  - name: consistent metrics pass
+    script: scripts/check_totals.py
+    args: ['{"product_a_revenue": 100, "product_b_revenue": 50, "total_revenue": 150, "eng_cost": 60, "sm_cost": 40, "total_cost": 100, "net": 50}']
+    exit_code: 0
+    expect_stdout: "OK"
+  - name: revenue mismatch is reported
+    script: scripts/check_totals.py
+    positional_args: ['{"product_a_revenue": 100, "product_b_revenue": 50, "total_revenue": 999, "eng_cost": 60, "sm_cost": 40, "total_cost": 100, "net": 899}']
+    exit_code: 1
+    must_contain: ["Revenue mismatch"]
+  - name: net mismatch is reported
+    script: scripts/check_totals.py
+    args: ['{"product_a_revenue": 100, "product_b_revenue": 50, "total_revenue": 150, "eng_cost": 60, "sm_cost": 40, "total_cost": 100, "net": 75}']
+    exit_code: 1
+    must_contain: ["Net mismatch"]
+  - name: no metrics is an error, not OK
+    script: scripts/check_totals.py
+    exit_code: 2
+    must_contain: ["no metrics"]

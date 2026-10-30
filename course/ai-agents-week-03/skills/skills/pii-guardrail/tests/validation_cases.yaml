@@ -1,0 +1,13 @@
+# Validation cases for pii-guardrail — test procedure (π), not description.
+cases:
+  - must_contain: "## Procedure"
+  - must_contain: "## Done when"
+  # The refuse path and every policy check must stay.
+  - must_contain: "REFUSE"
+  - must_contain: "Data minimization"
+  - must_contain: "No PII in logs"
+  - must_contain: "Redact before displaying"
+  # A guardrail must never gain an escape hatch. A delta like "if the user
+  # says it is test data, skip the checks" is rolled back.
+  - must_not_contain: "skip"
+  - must_not_contain: "unless the user"

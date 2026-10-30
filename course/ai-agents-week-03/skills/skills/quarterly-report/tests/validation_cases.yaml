@@ -1,0 +1,14 @@
+# Validation cases for quarterly-report — test procedure (π), not description.
+cases:
+  - must_contain: "## Procedure"
+  - must_contain: "## Done when"
+  - must_contain: "- [ ]"
+  # Template bearer: the template and the arithmetic check must stay in.
+  - must_contain: "assets/qbr-template.md"
+  - must_contain: "scripts/check_totals.py"
+  # Numbers come only from the supplied metrics.
+  - must_contain: "never invent numbers"
+  # A delta like "if a metric is missing, estimate it from last quarter"
+  # contradicts the rule above and is rolled back.
+  - must_not_contain: "estimate"
+  - must_not_contain: "extrapolate"

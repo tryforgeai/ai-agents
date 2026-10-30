@@ -1,0 +1,29 @@
+# Script tests for transcript-cleaner: run scripts/normalize.py on a sample
+# input and compare stdout. Deterministic, no LLM. `args` is passed as-is;
+# `positional_args` are preceded by "--", exactly as ADK's run_skill_script
+# passes them, so the script is tested the way the agent calls it.
+cases:
+  - name: drops um / uh fillers
+    script: scripts/normalize.py
+    args: ["Ummm I think uhh yes"]
+    expect_stdout: "I think yes"
+  - name: drops fillers together with their commas
+    script: scripts/normalize.py
+    args: ["So um the model, you know, converges"]
+    expect_stdout: "So the model converges"
+  - name: drops "like," used as a pause but keeps the verb "like"
+    script: scripts/normalize.py
+    args: ["It's like, really fast and I like this approach"]
+    expect_stdout: "It's really fast and I like this approach"
+  - name: collapses repeated spaces
+    script: scripts/normalize.py
+    args: ["GRPO    uses     logits"]
+    expect_stdout: "GRPO uses logits"
+  - name: leaves technical terms for the model to fix
+    script: scripts/normalize.py
+    args: ["So group O optimizes the logic"]
+    expect_stdout: "So group O optimizes the logic"
+  - name: positional argument as the agent passes it
+    script: scripts/normalize.py
+    positional_args: ["So um group O"]
+    expect_stdout: "So group O"

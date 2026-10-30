@@ -1,0 +1,7 @@
+cases:
+  - prompt: "Summarize proximal policy optimization in about 100 words."
+    should_fire: true
+  - prompt: "Give me an overview of the Riemann zeta function."
+    should_fire: true
+  - prompt: "Draft a conventional commit message for my staged diff."
+    should_fire: false

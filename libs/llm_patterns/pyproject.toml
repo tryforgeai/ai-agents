@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-agents-llm-patterns"
+version = "0.1.0"
+description = "Reusable model calls, prompt pipelines and deterministic tools from lab concepts"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2,<3"]
+
+[project.optional-dependencies]
+api = ["openai>=2,<3", "instructor>=1.15,<2"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

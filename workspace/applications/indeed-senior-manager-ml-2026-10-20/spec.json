@@ -1,0 +1,245 @@
+{
+  "page_break_after_experience": 0,
+  "projects_heading": "Selected Independent AI Projects",
+  "education": [
+    {
+      "label": "University of Warwick",
+      "text": "M.S. in E-Business Management."
+    },
+    {
+      "label": "Beijing University of Technology",
+      "text": "B.S. in Computer Science."
+    },
+    {
+      "label": "Certifications",
+      "text": "PMP; Certified ScrumMaster."
+    }
+  ],
+  "approval": {
+    "date": "2026-10-20",
+    "source": "User requested 创建cv cl for Indeed reference 47876.",
+    "scope": "Local tailored CV and cover letter; no submission.",
+    "evidence_profile_version": "2026-10-03.v1"
+  },
+  "source_of_truth": [
+    "docs/product/material-generation-profile.md",
+    "config/candidate-evidence.json",
+    "docs/product/candidate-evidence-notes.md"
+  ],
+  "supplemental_evidence": {
+    "product_ownership": "docs/product/candidate-evidence-notes.md — Product Strategy and Shared Product Ownership, confirmed 2026-09-13.",
+    "leader_development": "docs/product/candidate-evidence-notes.md — Leading Through Technical and Project Leaders, confirmed 2026-09-13.",
+    "sql": "docs/product/candidate-evidence-notes.md — Current Business SQL Requirements, confirmed 2026-07-13.",
+    "education_and_certifications": [
+      "education.computer-science",
+      "certification.delivery-leadership"
+    ]
+  },
+  "company": "Indeed",
+  "role": "Senior Manager, Machine Learning Engineering",
+  "role_slug": "Senior_Manager_ML_Engineering",
+  "source_url": "https://www.indeed.com/viewjob?jk=f087e749f9bc81ff",
+  "headline": "Engineering Manager | Applied AI and Consumer Platforms",
+  "profile": "Engineering Manager at Rakuten Rewards with a Staff-level IC foundation and earlier cloud architecture experience at Hewlett-Packard. Has managed up to 12 direct reports across three teams and five time zones. Combines production AI-assisted entity resolution, deep affiliate tracking and rewards expertise, and shared product ownership for systems serving over four million users.",
+  "strengths": [
+    {
+      "label": "Technical and product direction",
+      "text": "Business needs, priorities, success criteria, architecture decisions, and delivery plans with senior leaders and cross-functional partners."
+    },
+    {
+      "label": "Production Applied AI",
+      "text": "Bedrock-backed merchant matching with deterministic paths, human correction, auditability, monitoring, and safe fallback."
+    },
+    {
+      "label": "Team and domain leadership",
+      "text": "Technical leader development; affiliate tracking, attribution, order workflows, and cashback correctness across interconnected systems."
+    }
+  ],
+  "experience": [
+    {
+      "role": "Engineering Manager (earlier IC role)",
+      "company": "Rakuten Rewards",
+      "dates": "2015 - Present",
+      "location": "San Mateo, CA / Distributed",
+      "bullets": [
+        {
+          "text": "Lead backend and API engineering at Rakuten Rewards, following an earlier IC role. Systems under this ownership support over four million users, 50+ external integrations, more than 10,000 peak requests per second, and 10+ feature services.",
+          "evidence": [
+            "employment.rakuten.management",
+            "employment.rakuten.system-scale",
+            "employment.rakuten.platform-surface"
+          ]
+        },
+        {
+          "text": "Oversee delivery of production Amazon Bedrock-backed merchant and store entity resolution for credit-card transactions, combining deterministic matching, model-assisted resolution, human correction loops, audit trails, monitoring, and safe fallback.",
+          "evidence": [
+            "employment.rakuten.bedrock-entity-resolution"
+          ]
+        },
+        {
+          "text": "Serve as a cross-domain technical authority for tracking, order attribution, cashback, bonus, and bookkeeper calculation flows; own the tracking ticket service and affiliate-network tracking solution across dozens of advertising networks.",
+          "evidence": [
+            "employment.rakuten.domain-authority"
+          ]
+        },
+        {
+          "text": "Share product ownership and partner with senior leaders on product direction, use cases, priorities, and success criteria. Balance business value, technical complexity, reliability, and delivery speed.",
+          "evidence": [
+            "employment.rakuten.leadership-strength-clarity-support"
+          ]
+        },
+        {
+          "text": "Guide architecture, technical review, CI/CD, caching, load balancing, observability, and microservice optimization. Support on-call and incident response for 24/7 systems operating under 99.999% uptime expectations.",
+          "evidence": [
+            "employment.rakuten.architecture-reliability",
+            "employment.rakuten.availability"
+          ]
+        },
+        {
+          "text": "Managed up to 12 direct reports across three engineering teams and five time zones. Coach engineers through hiring, mentoring, direct feedback, and career growth while maintaining clear accountability for production outcomes.",
+          "evidence": [
+            "employment.rakuten.team-scale",
+            "employment.rakuten.people-development"
+          ]
+        },
+        {
+          "text": "Develop technical and project leaders across Games, Tracking, and AI matching. Delegate detailed design and delivery while retaining architecture and business context, resolving blockers, and supporting independent technical judgment.",
+          "evidence": [
+            "employment.rakuten.hands-on-operating-model",
+            "employment.rakuten.leadership-strength-clarity-support"
+          ]
+        },
+        {
+          "text": "Designed core order-rules changes for fast cashback approval on travel orders and personally wrote a few hundred test cases. Contribute directly when domain complexity or delivery blockers call for it, while preserving engineers' ownership and growth.",
+          "evidence": [
+            "employment.rakuten.travel-cashback-approval",
+            "employment.rakuten.hands-on-operating-model"
+          ]
+        },
+        {
+          "text": "Before moving into management, rewrote the company’s order workflow system with a Staff-level IC scope, owning complex business rules where small defects could create million-dollar business risk.",
+          "evidence": [
+            "employment.rakuten.staff-ic-foundation"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "Cloud Architect",
+      "company": "Hewlett-Packard",
+      "dates": "2010 - 2015",
+      "bullets": [
+        {
+          "text": "Designed cloud-oriented APIs, service architecture, and resilient infrastructure, supporting modernization toward scalable services.",
+          "evidence": [
+            "employment.hp.cloud-architecture"
+          ]
+        },
+        {
+          "text": "Introduced Infrastructure as Code practices with Terraform to improve environment and deployment repeatability.",
+          "evidence": [
+            "employment.hp.terraform"
+          ]
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "role": "Forge AI",
+      "company": "Personal retrieval and workflow projects",
+      "dates": "Independent projects",
+      "bullets": [
+        {
+          "text": "Built a mixed-format RAG system with Markdown, Excel, and Word ingestion, Voyage AI embeddings, persistent Chroma retrieval, and Claude-grounded answers.",
+          "evidence": [
+            "project.forgeai.rag"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "Avaloka AI",
+      "company": "Personal research prototype",
+      "dates": "Independent project",
+      "bullets": [
+        {
+          "text": "Built a local AI prototype with LLM orchestration, risk routing, guardian gates, repair, safe fallback, prompt registries, and evaluation-driven behavior.",
+          "evidence": [
+            "project.avaloka.orchestration-safety"
+          ]
+        },
+        {
+          "text": "Implemented a memory workflow separating writer and reader behavior, with evidence-backed records, bounded retrieval, lifecycle controls, diagnostics, and evaluation gates.",
+          "evidence": [
+            "project.avaloka.memory"
+          ]
+        }
+      ]
+    }
+  ],
+  "toolbox": [
+    {
+      "label": "Languages and data",
+      "text": "Java, Python, TypeScript, REST APIs, SQL, PostgreSQL, Snowflake."
+    },
+    {
+      "label": "Cloud and operations",
+      "text": "AWS, Kafka, Kubernetes, S3, DynamoDB, Terraform, distributed systems, CI/CD, observability, incident response."
+    },
+    {
+      "label": "Applied AI",
+      "text": "Amazon Bedrock production delivery; independent projects with Claude, LLM orchestration, guardrails, evals, RAG, Chroma, Voyage AI, and n8n."
+    }
+  ],
+  "known_gaps": [
+    "No verified formal manager-of-managers or ML/data-science team management history.",
+    "No verified auction design, bidding, pricing, budget optimization, ranking model ownership, or large-scale causal experiment experience.",
+    "Spark, Presto and Trino are not verified skills."
+  ],
+  "cover_letter": {
+    "date": "October 20, 2026",
+    "recipient": "Dear Indeed Marketplace Efficiency Hiring Team,",
+    "paragraphs": [
+      "I am applying for the Senior Manager, Machine Learning Engineering position on Marketplace Efficiency (reference 47876). Connecting jobseekers with relevant opportunities while delivering value to employers is a challenge that interests me as an engineering leader with deep consumer-platform experience. I would bring production Applied AI delivery, technical leader development, and a strong understanding of how attribution and rewards systems connect engineering decisions to business outcomes.",
+      "At Rakuten Rewards, I have managed up to 12 direct reports across three engineering teams and five time zones. I develop technical and project leaders across Games, Tracking, and AI matching, giving them ownership of detailed design and delivery while helping resolve architectural risks and cross-team blockers. I also share product ownership, partnering with senior leaders on use cases, priorities, success criteria, and tradeoffs between business value, reliability, and delivery speed.",
+      "I oversee delivery of production Amazon Bedrock-backed merchant and store entity resolution for credit-card transactions. Incorrect matches affect customer rewards and require operational correction, so the workflow combines deterministic matching, model-assisted resolution, human correction loops, audit trails, monitoring, and safe fallback. This work has strengthened my judgment about integrating AI-assisted decisions into a dependable business process with clear operational accountability.",
+      "My technical foundation comes from rewriting Rakuten's order workflow system before moving into management. The platform under my teams' ownership supports more than four million users, over 10,000 peak requests per second, and more than 50 external integrations. I remain directly involved where domain complexity or correctness risk requires it: for travel cashback approval, I designed core order-rules changes and personally wrote a few hundred test cases while preserving engineers' implementation ownership.",
+      "I would welcome a conversation about how my combination of consumer-platform experience, AI delivery, and engineering leadership could contribute to Marketplace Efficiency. Indeed's emphasis on balancing jobseeker, employer, and marketplace outcomes appeals to me because it makes technical judgment inseparable from product and business judgment."
+    ]
+  },
+  "cover_letter_evidence": {
+    "opening": [
+      "employment.rakuten.management"
+    ],
+    "platform": [
+      "employment.rakuten.system-scale",
+      "employment.rakuten.staff-ic-foundation"
+    ],
+    "leadership": [
+      "employment.rakuten.team-scale",
+      "employment.rakuten.hands-on-operating-model"
+    ],
+    "role_specific": [
+      "employment.rakuten.bedrock-entity-resolution",
+      "employment.hp.cloud-architecture",
+      "employment.hp.terraform",
+      "employment.rakuten.travel-cashback-approval",
+      "project.agent-first.bootstrap",
+      "project.forgeai.governance",
+      "project.forgeai.rag",
+      "project.avaloka.memory"
+    ]
+  },
+  "profile_evidence": [
+    "employment.rakuten.management",
+    "employment.rakuten.staff-ic-foundation",
+    "employment.rakuten.system-scale",
+    "employment.rakuten.tech-stack",
+    "employment.rakuten.bedrock-entity-resolution",
+    "employment.rakuten.leadership-strength-clarity-support",
+    "employment.hp.cloud-architecture",
+    "employment.rakuten.team-scale"
+  ],
+  "source_notes": "User-supplied JD, Indeed reference 47876, reviewed 2026-10-20. Deadline 2026-10-16 may be extended; applications unconfirmed. Rakuten employment includes earlier IC work. No Indeed match found in applied-jobs.json or interviews/INDEX.md."
+}

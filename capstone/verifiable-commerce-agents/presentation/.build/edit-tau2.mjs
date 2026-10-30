@@ -1,0 +1,57 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {FileBlob,PresentationFile} from '@oai/artifact-tool';
+import {finalizePresentation} from '/Users/soardulia/.codex/plugins/cache/openai-primary-runtime/presentations/26.1020.11618/skills/presentations/container_tools/artifact_tool_utils.mjs';
+const ROOT='/Volumes/DOCK1TBFILES/AI/AI Agents/capstone/verifiable-commerce-agents/presentation';
+const SKILL='/Users/soardulia/.codex/plugins/cache/openai-primary-runtime/presentations/26.1020.11618/skills/presentations';
+const P=await PresentationFile.importPptx(await FileBlob.load(path.join(ROOT,'output','Verifiable_Commerce_Agents_Overview_EN.pptx')));
+const snap=await P.inspect({kind:'slide,textbox,table,layout',maxChars:150000});
+await fs.writeFile(path.join(ROOT,'.build','tau2-before.ndjson'),snap.ndjson);
+const records=snap.ndjson.trim().split('\n').map(l=>JSON.parse(l));
+function rep(old,value){const rec=records.filter(r=>r.kind==='textbox'&&r.text===old);if(rec.length!==1)throw Error('match '+old+': '+rec.length);const sh=P.resolve(rec[0].id);sh.text.replace(old,value);return sh;}
+const B='https://github.com/sierra-research/tau2-bench/blob/122e2432b82d740e8f313f46f0a071729c404f39/';
+function notes(i,t,paths){P.slides.items[i-1].speakerNotes.text=t+'\n\nSources:\n'+paths.map(p=>B+p).join('\n');}
+function table(i,values){const r=records.find(r=>r.kind==='table'&&r.slideIndex===i-1);if(!r)throw Error('table '+i);const tb=P.resolve(r.id);for(let row=0;row<values.length;row++)for(let col=0;col<values[row].length;col++)tb.cells.set(row,col,values[row][col]);}
+rep('Verifiable Commerce\nAgents','tau2-bench');
+rep('A capstone proposal for evaluating retail agents\nwith controlled tools and verifiable evidence','Architecture, agent interfaces and evaluation\nA retail task walkthrough');
+notes(1,'An introduction to the tau2-bench repository and a concrete retail task. Technical details use commit 122e2432b82d740e8f313f46f0a071729c404f39. The walkthrough reconstructs source-code behavior, not a recorded model run. The repository has evolved beyond the original tau2 release. This deck focuses on the text-based interaction loop.',['README.md']);
+rep('The capstone goal','What tau2-bench evaluates');
+rep('Evaluate interchangeable retail agents against explicit business rules','Conversational agents that use tools to complete customer-service tasks');
+rep('Did the agent complete the task?','Multi-turn customer interactions');
+rep('Check the actual order, refund and inventory state.','A simulated customer reveals goals and responds to the agent.');
+rep('Did it act within its authority?','Tool use in a stateful environment');
+rep('Check confirmation, policy limits and approval evidence.','Domain tools change orders and other records that evaluators inspect.');
+rep('Planned scope: returns, exchanges and coupon rules in a synthetic store.','Domains include retail, airline and telecom. The repository also supports voice.');
+notes(2,'tau2-bench evaluates conversational customer-service agents in simulated domains with policies, tools, databases and user scenarios. The repository supports text half-duplex and voice full-duplex modes, as well as additional domains such as banking_knowledge and intake. This presentation uses the retail text loop to make the design concrete. A task reward measures the configured criteria rather than every possible property of real-world service quality.',['README.md','src/tau2/domains/retail/environment.py']);
+rep('Proposed addition: verify a trusted confirmation event before the write.','A policy requirement affects reward only when the task checks it.');
+notes(11,'This is a hypothetical source-based counterexample, not a measured result. Assume identical valid exchange calls and normal termination. The exchange tool lacks a confirmation credential argument, DB comparison cannot prove dialogue order, and base task 0 has no nonempty NL assertion. Other tasks can enable dialogue checks. The example shows why a benchmark result must be interpreted together with its active criteria.',['data/tau2/domains/retail/tasks.json','src/tau2/domains/retail/tools.py#L240','src/tau2/evaluator/evaluator_nl_assertions.py']);
+rep('Proposed commerce evaluation system','Connecting a different agent');
+rep('Reuse tau2 concepts and add domain-specific evidence checks','The interface keeps the task environment independent of agent internals');
+table(12,[['Integration point','What it provides'],['HalfDuplexAgent','Receives user or tool messages and returns AssistantMessage'],['State methods','get_init_state() and generate_next_message()'],['Registry factory','Creates the chosen agent with tools and domain policy'],['Gym / A2A experiment','Step-based control or an external service adapter']]);
+rep('Report agent violations separately from violations the guard prevents.','External agents still need to follow a tool and message contract.');
+notes(12,'A normal text agent subclasses HalfDuplexAgent and implements get_init_state and generate_next_message. Inputs can include UserMessage, ToolMessage or MultiToolMessage. A registered factory supplies tools and domain policy. Registry changes must load in the runner process. Gym offers reset/step control, while the experimental agentify_tau_bench bridge exchanges A2A messages with a JSON action convention. These are integration options, not zero-adaptation support for every external agent. In-process tools do not provide a security sandbox.',['src/tau2/agent/base_agent.py','examples/agents/minimal_text_agent.py','src/tau2/registry.py','src/tau2/gym/gym_agent.py','src/experiments/agentify_tau_bench/src/agentify_tau_bench/green_agent/agent.py']);
+rep('Agent comparison and evaluation plan','Reliability across repeated trials');
+rep('Planned conditions share tasks, tools and scoring rules','Illustrative example: one task succeeds in 3 of 4 trials');
+table(13,[['Metric','Estimate'],['pass^1: one sampled trial succeeds','3 / 4 = 0.75'],['pass^2: both sampled trials succeed','3 / 6 = 0.50'],['pass^3: all three sampled trials succeed','1 / 4 = 0.25'],['pass^4: all four trials succeed','0 / 1 = 0.00']]);
+rep('150 held-out decision points\n30 complete tasks, 4 trials each','pass^k = C(c, k) / C(n, k)\nCompute per task, then average.');
+rep('Report completion, violations, cost,\nlatency and pass^1 through pass^4.','pass@k asks whether at least\none of k attempts succeeds.');
+notes(13,'This slide is a calculated illustration, not a benchmark result. n is the number of trials, c the number of successes, and k the number sampled without replacement. The implementation raises when n < k. pass^k measures repeated success while pass@k measures at least one success. A high score applies to the chosen task and simulator distribution and does not alone establish production readiness.',['src/tau2/metrics/agent_metrics.py']);
+rep('Implementation milestones','Capabilities and boundaries');
+rep('The first deliverable is a verified task loop','The framework is extensible, while each domain defines a narrower test');
+rep('One rule and three hand-checked tasks','A reusable evaluation loop');
+rep('Use a fixed date, isolated state and a scripted agent.','Tasks, users, agents and tools have separate interfaces.');
+rep('Outcome checks and process checks','Task-specific grading');
+rep('Test missing confirmation, repeated writes and inappropriate refusal.','DB, action and language checks cover only the criteria a task enables.');
+rep('Model comparison and optimization','A bounded retail simulation');
+rep('Freeze test cases before adding prompt optimization or GRPO.','The shipped retail domain lacks coupon rules and delivery-date windows.');
+notes(14,'The framework provides extension points rather than a universal correctness definition. Retail models query, cancellation, modification and return/exchange requests. Its current order schema lacks delivery-date fields and its toolkit lacks a coupon or full checkout flow. Custom domains can add them. Standard Gym returns zero before completion and does not automatically supply dense per-step rewards. External side effects must be observable and replayable, or evaluated through another trustworthy state path.',['src/tau2/domains/retail/data_model.py','src/tau2/domains/retail/tools.py','src/tau2/gym/gym_agent.py','docs/evaluation.md']);
+rep('Sources and project status','Source map and version scope');
+rep('Capstone design: Proposal v2, October 24, 2026\nStatus: source review and prototype material. Integration and model experiments remain planned.','Walkthrough: base retail task 0 at the pinned commit above.\nReleased benchmarks can use different task sets. Compare matched versions and settings.');
+notes(15,'The presentation is about tau2-bench only. Source-code paths cover the task schema, standard agent, orchestrator, retail tools, state replay and evaluators. The base retail collection has 114 tasks at the reviewed revision. Released text-v1 uses a frozen 50-task retail set with language-specific data binding, so this walkthrough must not be generalized to every released task. Pin code, data, agent configuration, user simulator and scoring configuration for comparable results.',['README.md','docs/evaluation.md','data/tau2/domains/retail/tasks.json','data/tau2/benchmarks/text.json','src/tau2/data_model/tasks.py','src/tau2/orchestrator/orchestrator.py','src/tau2/evaluator/evaluator_env.py']);
+await fs.mkdir(path.join(ROOT,'.build','tau2-renders'),{recursive:true});
+for(let i=0;i<P.slides.items.length;i++){const b=await P.export({slide:P.slides.items[i],format:'png',scale:1});await fs.writeFile(path.join(ROOT,'.build','tau2-renders',`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await b.arrayBuffer()));}
+const candidatePath=path.join(ROOT,'.build','tau2-candidate.pptx');
+await (await PresentationFile.exportPptx(P)).save(candidatePath);
+const tableOwners=[3,5,7,9,11,12,13];
+const result=await finalizePresentation({workspaceDir:ROOT,candidatePath,finalPath:path.join(ROOT,'output','Tau2_Bench_Overview_EN.pptx'),pythonExecutable:'/Users/soardulia/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3',integrityValidatorPath:path.join(SKILL,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(SKILL,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit',...tableOwners.flatMap(n=>['--require-native-table-slide',String(n)])],explicitTotalSlideCount:15,requiredNativeTableOwnerSlides:tableOwners,fontPolicy:{basis:'design',families:['Helvetica Neue']},verifyArtifactToolImport:true,receiptPath:path.join(ROOT,'.build','tau2-validation.json')});
+console.log(JSON.stringify(result));

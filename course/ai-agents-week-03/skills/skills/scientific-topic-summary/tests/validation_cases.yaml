@@ -1,0 +1,12 @@
+# Validation cases for scientific-topic-summary — test procedure (π).
+cases:
+  - must_contain: "## Procedure"
+  - must_contain: "## Done when"
+  - must_contain: "- [ ]"
+  - must_contain: "{topic}"
+  - must_contain: "3–4 references"
+  # Regression tests from real history: this skill began life as
+  # riemann-zeta-summary. "When to use" may name example topics, but the
+  # procedure must not bake in their content (zeta zeros, PPO's clip objective).
+  - must_not_contain: "zeros"
+  - must_not_contain: "clip objective"

@@ -1,0 +1,14 @@
+# Validation cases for wedding-invitation-draft — test procedure (π).
+cases:
+  - must_contain: "## Procedure"
+  - must_contain: "## Done when"
+  - must_contain: "- [ ]"
+  # Mandatory fields stay parameterized and the ask-if-missing rule stays.
+  - must_contain: "{couple_names}"
+  - must_contain: "{venue}"
+  - must_contain: "ask the user"
+  # Regression tests from real history: template placeholders, and the
+  # example couple and venue from the first run.
+  - must_not_contain: "<common-path step"
+  - must_not_contain: "Timbuktoo"
+  - must_not_contain: "Mr. X"

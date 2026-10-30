@@ -1,0 +1,9 @@
+cases:
+  - prompt: Create a quiz on photosynthesis with at least ten questions.
+    should_fire: true
+  - prompt: Generate a quiz about the French Revolution.
+    should_fire: true
+  - prompt: Grade this existing exam on the water cycle.
+    should_fire: false
+  - prompt: Summarize the French Revolution in about 100 words.
+    should_fire: false

@@ -1,0 +1,183 @@
+{
+  "commit": "122e2432b82d740e8f313f46f0a071729c404f39",
+  "method": "Static JSON/AST inspection; no agent run, reward computation or tool execution.",
+  "write_tools": [
+    "cancel_pending_order",
+    "exchange_delivered_order_items",
+    "modify_pending_order_address",
+    "modify_pending_order_items",
+    "modify_pending_order_payment",
+    "modify_user_address",
+    "return_delivered_order_items"
+  ],
+  "collections": [
+    {
+      "file": "data/tau2/domains/retail/tasks.json",
+      "tasks": 114,
+      "reward_bases": {
+        "['DB', 'NL_ASSERTION']": 112,
+        "['DB']": 2
+      },
+      "no_reference_write_tasks": [
+        {
+          "id": "10",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": null,
+          "communicate_info": []
+        },
+        {
+          "id": "12",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": null,
+          "communicate_info": []
+        },
+        {
+          "id": "24",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": [
+            "Agent should tell the user the materials of the two t-shirts are polyester and cotton."
+          ],
+          "communicate_info": [
+            "polyester",
+            "cotton"
+          ]
+        },
+        {
+          "id": "25",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": null,
+          "communicate_info": []
+        },
+        {
+          "id": "50",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": null,
+          "communicate_info": []
+        },
+        {
+          "id": "57",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": null,
+          "communicate_info": []
+        },
+        {
+          "id": "62",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": [
+            "Agent should tell the user the Bluetooth speaker costs $302.67.",
+            "Agent should tell the user the battery life is 20 hours."
+          ],
+          "communicate_info": [
+            "302.67",
+            "20 hours"
+          ]
+        },
+        {
+          "id": "65",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": null,
+          "communicate_info": []
+        },
+        {
+          "id": "67",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": [
+            "Agent should tell the user the order total is $829.43."
+          ],
+          "communicate_info": [
+            "829.43"
+          ]
+        },
+        {
+          "id": "68",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": [
+            "Agent should tell the user the order total is $829.43."
+          ],
+          "communicate_info": [
+            "829.43"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "data/tau2/multilingual/en/retail_tasks_en.json",
+      "tasks": 50,
+      "reward_bases": {
+        "['DB', 'NL_ASSERTION']": 50
+      },
+      "no_reference_write_tasks": [
+        {
+          "id": "25",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": null,
+          "communicate_info": []
+        },
+        {
+          "id": "50",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": null,
+          "communicate_info": []
+        },
+        {
+          "id": "65",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": null,
+          "communicate_info": []
+        },
+        {
+          "id": "68",
+          "reward_basis": [
+            "DB",
+            "NL_ASSERTION"
+          ],
+          "nl_assertions": [
+            "Agent should tell the user the order total is $829.43."
+          ],
+          "communicate_info": [
+            "829.43"
+          ]
+        }
+      ]
+    }
+  ]
+}

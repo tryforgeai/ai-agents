@@ -1,0 +1,14 @@
+# Validation cases for quiz-creation — test procedure (π), not description.
+cases:
+  - must_contain: "## Procedure"
+  - must_contain: "## Done when"
+  - must_contain: "- [ ]"
+  # Requirement added by a user follow-up (CHANGELOG 0.1.1) must not be lost.
+  - must_contain: "at least 10 questions"
+  - must_contain: "answer key"
+  - must_contain: "{topic}"
+  # Regression tests from real history: the template placeholders once
+  # survived authoring, and the first quiz was about soccer.
+  - must_not_contain: "<common-path step"
+  - must_not_contain: "<definition-of-done"
+  - must_not_contain: "soccer"

@@ -1,0 +1,18 @@
+# Behaviour tests for transcript-cleaner: the LLM applies this skill (SKILL.md + L3 files)
+# to each input, and the reply is checked. Costs one LLM call per case;
+# replies vary, so rerun before blaming the procedure for a single failure.
+# Checks: must_contain / must_not_contain (exact, case-sensitive substrings),
+# must_match (regex), min_matches (regex + minimum count).
+cases:
+  - name: restores glossary terms
+    input: >-
+      Clean this transcript: So um, today we look at how group O updates the
+      logic of an L L M, you know, during training.
+    must_contain: ["GRPO", "logits", "LLM"]
+    must_not_contain: ["group O", "L L M", "you know"]
+  - name: keeps the speaker's wording
+    input: >-
+      Clean this transcript: uh so basically attention is all you need showed
+      that, um, you don't need recurrence at all.
+    must_contain: ["Attention Is All You Need", "recurrence"]
+    must_not_contain: [" uh ", " um,"]

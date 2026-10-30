@@ -1,0 +1,12 @@
+# Validation cases for commit-message — test procedure (π), not description.
+cases:
+  - must_contain: "## Procedure"
+  - must_contain: "## Done when"
+  - must_contain: "- [ ]"
+  - must_contain: "references/format.md"
+  - must_contain: "72 chars"
+  - must_contain: "**why**"
+  # Team policy (see pii-guardrail): no personal data in commit messages.
+  # A delta like "add the author's email address to the subject" is rolled back.
+  - must_not_contain: "email"
+  - must_not_contain: "phone"

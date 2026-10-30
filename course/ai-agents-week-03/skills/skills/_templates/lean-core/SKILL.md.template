@@ -1,0 +1,34 @@
+---
+# Template for scaffolding new skills (lean-core pattern from instructor theory).
+# Copy is rendered by scaffold_skill.py — placeholders in {{DOUBLE_BRACES}}.
+name: {{SKILL_NAME}}
+description: >-
+  {{SKILL_DESCRIPTION}} Use when {{TRIGGER_CUES}}.
+  Do NOT use for {{EXCLUSIONS}}.
+version: "0.1.0"
+---
+
+# {{SKILL_TITLE}}
+
+## When to use
+
+Reinforce the trigger and name explicit negatives (teach students: bound I):
+
+- Use when: {{TRIGGER_CUES}}
+- Do NOT use for: {{EXCLUSIONS}}
+
+## Procedure
+
+Checklist-carrier pattern — use ``{placeholder}`` for per-request inputs:
+
+- [ ] Step 1: Extract ``{topic}`` (or ``{input}``) from the user message.
+- [ ] Step 2: <common-path step for this workflow type>
+- [ ] Step 3: <definition-of-done check>
+
+Do not bake one example instance (e.g. a specific theorem name) into the
+procedure. Do not report "done" until every box is ticked.
+
+## Done when
+
+Explicit, checkable termination (β). Example: "All placeholders replaced and
+validator script returned OK."

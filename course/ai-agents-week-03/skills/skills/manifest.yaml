@@ -1,0 +1,35 @@
+version: 1.0.0
+maturity_level: 2
+skills:
+- name: transcript-cleaner
+  version: 0.1.0
+  pattern: lean-core
+  status: active
+- name: quarterly-report
+  version: 0.1.0
+  pattern: template-bearer
+  status: active
+- name: pii-guardrail
+  version: 0.1.0
+  pattern: guardrail
+  status: active
+- name: commit-message
+  version: 0.1.0
+  pattern: checklist-carrier
+  status: active
+- name: scientific-topic-summary
+  version: 0.1.0
+  pattern: lean-core
+  status: draft
+- name: wikipedia-article-writing
+  version: 0.1.2
+  pattern: lean-core
+  status: draft
+- name: quiz-creation
+  version: 0.1.5
+  pattern: lean-core
+  status: draft
+- name: wedding-invitation-draft
+  version: 0.1.3
+  pattern: lean-core
+  status: draft

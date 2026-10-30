@@ -1,0 +1,34 @@
+[project]
+name = "deepagents-basics"
+version = "0.1.0"
+description = "PRDA: a Product R&D Assistant built on the deepagents harness (planning, filesystem, subagents, memory)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "svlearn-bootcamp>=0.1.7",
+    "deepagents>=0.7.7,<0.8",   # harness-era API: instance backends, skills=, memory=, permissions=
+    "streamlit>=1.37.0",
+    "tavily-python>=0.3.3",     # optional at runtime: tools fall back to a mock search without a key
+    "python-dotenv>=1.0.1",
+    "langchain-openai>=0.1.0",
+    "langgraph>=1.0.2",
+    "langchain-openrouter>=0.2.9",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+# If you also build sdists and want data included:
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    # ... other includes like README, pyproject.toml, etc.
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/deepagents_basics"]

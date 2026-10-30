@@ -1,0 +1,9 @@
+cases:
+  - prompt: Write a Wikipedia article about the game of cricket, with citations.
+    should_fire: true
+  - prompt: Draft a Wikipedia-style article on the history of the printing press.
+    should_fire: true
+  - prompt: Give me a 100-word study summary of cricket.
+    should_fire: false
+  - prompt: Make ten practice questions about the printing press.
+    should_fire: false

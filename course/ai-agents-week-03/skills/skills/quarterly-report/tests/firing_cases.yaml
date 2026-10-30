@@ -1,0 +1,11 @@
+cases:
+  - prompt: >-
+      Build a full QBR for Q2. Metrics: revenue 1.2M, product A 700k,
+      product B 500k, eng 300k, sm 200k.
+    should_fire: true
+  - prompt: Fill the quarterly business review template with these numbers.
+    should_fire: true
+  - prompt: Write a one-paragraph executive summary of our quarter.
+    should_fire: false
+  - prompt: Clean a noisy lecture transcript.
+    should_fire: false

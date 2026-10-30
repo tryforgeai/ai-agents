@@ -1,0 +1,9 @@
+# Validation cases for wikipedia-article-writing — test procedure (π).
+cases:
+  - must_contain: "## Procedure"
+  - must_contain: "## Done when"
+  - must_contain: "- [ ]"
+  - must_contain: "<ref>"
+  - must_contain: "References section"
+  - must_contain: "neutral"
+  - must_not_contain: "<common-path step"

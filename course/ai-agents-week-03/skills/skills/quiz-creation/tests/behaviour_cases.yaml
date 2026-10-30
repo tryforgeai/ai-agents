@@ -1,0 +1,10 @@
+# Behaviour tests for quiz-creation: the LLM applies this skill (SKILL.md + L3 files)
+# to each input, and the reply is checked. Costs one LLM call per case;
+# replies vary, so rerun before blaming the procedure for a single failure.
+# Checks: must_contain / must_not_contain (exact, case-sensitive substrings),
+# must_match (regex), min_matches (regex + minimum count).
+cases:
+  - name: at least ten questions with an answer key
+    input: Create a quiz on photosynthesis.
+    min_matches: {pattern: "(?m)^\\s*(\\*\\*)?(Q(uestion)?\\s*)?\\d{1,2}[.):]", count: 10}
+    must_match: ["(?i)answer key"]

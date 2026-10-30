@@ -17,6 +17,7 @@
 
 | 文件 | 内容 |
 | --- | --- |
+| [`lab-summary.zh.md`](lab-summary.zh.md) | **Lab 学习总结**：API 基础、CO-STAR 结构化提示、Instructor 与 Pydantic 结构化输出 |
 | ⭐ [`delta.zh.md`](delta.zh.md) | **本周增量**（主文件）：新增 / 讲法不同 / 被修正 / 被砍掉 四类 |
 | [`notes.zh.md`](notes.zh.md) | 现场笔记（只在出现 Week 00 没有的内容时才记） |
 | 📤 [`summary.en.md`](summary.en.md) | **英文版 · 给团队分享用** —— 本周主题：agent 记忆的三分法（episodic / semantic / procedural） |

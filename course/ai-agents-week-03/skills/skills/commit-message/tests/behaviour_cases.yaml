@@ -1,0 +1,16 @@
+# Behaviour tests for commit-message: the LLM applies this skill (SKILL.md + L3 files)
+# to each input, and the reply is checked. Costs one LLM call per case;
+# replies vary, so rerun before blaming the procedure for a single failure.
+# Checks: must_contain / must_not_contain (exact, case-sensitive substrings),
+# must_match (regex), min_matches (regex + minimum count).
+cases:
+  - name: conventional subject line within 72 characters
+    input: |
+      Write a commit message for this diff:
+      --- a/src/skills/filesystem_registry.py
+      +++ b/src/skills/filesystem_registry.py
+      @@ def search_skills(self, *, query: str):
+      -        return []
+      +        if not query.strip():
+      +            return list(self._frontmatters.values())
+    must_match: ["(?m)^`?(feat|fix|docs|refactor|test|chore)(\\([^)]*\\))?: .{1,66}$"]

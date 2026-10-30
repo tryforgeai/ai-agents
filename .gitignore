@@ -22,3 +22,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# Local agent sessions and dependency installations
+.adk/
+node_modules

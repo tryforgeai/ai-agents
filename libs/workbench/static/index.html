@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Agents · 方法实验台</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="实验台首页"><span class="brand-icon">A<span>↗</span></span><span>AI Agents<small>LEARNING WORKBENCH</small></span></a>
+  <div class="workspace-label">你的可复用开发工具箱</div>
+  <nav aria-label="主导航"><button id="nav-methods" class="nav active">◈ <span>方法实验台</span><b id="method-count">—</b></button><button id="nav-sources" class="nav">⌘ <span>课程与源码</span><b id="source-count">—</b></button></nav>
+  <label class="searchbox"><span>⌕</span><input id="method-search" type="search" placeholder="搜索方法、概念…" aria-label="搜索方法"><kbd>/</kbd></label>
+  <div id="filters" class="filters"></div>
+  <div id="method-list" class="method-list" aria-label="方法列表"></div>
+  <footer class="sidebar-footer"><span class="dot"></span> 本地运行 · 源码只读<small>Week 00 — 03 / Python libraries</small></footer>
+</aside>
+<main>
+  <header class="topbar"><span id="breadcrumb">方法实验台 / 选择一个模式开始</span><span class="local-pill">LOCAL WORKSPACE</span></header>
+  <section id="methods-view">
+    <div class="intro"><div><span class="eyebrow">LEARN · RUN · REUSE</span><h1>把方法变成你的工具。</h1><p>调整输入，观察执行，带走可复用的 Python 代码。</p></div><div class="stat"><strong id="count-total">32</strong><span>公开方法<br>两个 Python 库</span></div></div>
+    <div id="loading" class="empty">正在加载方法目录…</div>
+    <article id="method-detail" hidden>
+      <div class="method-heading"><div><div class="badges"><span id="package-tag" class="tag"></span><span id="dependency-tag" class="tag green"></span></div><h2 id="method-title"></h2><code id="method-symbol"></code></div><button id="view-source" class="secondary">查看来源 ↗</button></div>
+      <p id="method-description" class="description"></p>
+      <div id="requirements" class="notice" hidden></div>
+      <details id="setup-details" class="setup"><summary>依赖与启动方式</summary><pre id="setup-code"></pre></details>
+      <div id="method-notes" class="note" hidden></div>
+      <div class="experiment-grid">
+        <section class="panel input-panel"><div class="panel-heading"><h3><span class="step">01</span> 输入与运行</h3><button id="restore-input" class="text-button">恢复示例</button></div>
+          <label for="input-json" class="field-label">输入 JSON <span>可直接编辑</span></label><textarea id="input-json" spellcheck="false" aria-describedby="input-hint"></textarea><p id="input-hint" class="hint">文本输入也需保留双引号；数字和列表使用 JSON 格式。</p>
+          <div id="image-field" hidden><label class="upload">选择本地图片（PNG / JPEG / GIF / WebP）<input id="image-upload" type="file" accept="image/png,image/jpeg,image/gif,image/webp"></label><p id="image-status" class="hint">最大 2 MB。仅转换格式，不发送给模型。</p></div>
+          <label id="external-control" class="checkbox" hidden><input id="allow-external" type="checkbox"><span>允许本次调用配置的外部服务（可能产生费用或导出追踪）</span></label>
+          <div class="run-controls"><button id="run" class="primary">▶ 运行方法</button><button id="reset-session" class="secondary" hidden>新会话</button></div><div id="session-label" class="hint"></div>
+        </section>
+        <section class="panel output-panel"><div class="panel-heading"><h3><span class="step">02</span> 结果与执行过程</h3><span id="run-status" class="status">等待运行</span></div>
+          <div id="result-empty" class="empty"><span class="empty-icon">↳</span><strong>从一个小实验开始</strong><p>点击运行后，结果、事件和状态会出现在这里。</p></div>
+          <div id="result-content" hidden><div class="result-toolbar"><span id="result-label">返回结果</span><button id="download-result" class="text-button">下载 JSON ↓</button></div><pre id="result-json" tabindex="0"></pre>
+          <div id="review-panel" class="review" hidden><h4>需要你的决定</h4><p id="review-message"></p><label for="review-notes">修改意见（可选）</label><textarea id="review-notes" rows="2" placeholder="例如：更简洁，保留具体例子"></textarea><div class="review-actions"><button class="primary" data-decision="approve">批准</button><button class="secondary" data-decision="revise">要求修改</button><button class="text-button danger" data-decision="reject">拒绝</button></div></div>
+          <details id="events-details" hidden><summary>执行事件 <span id="event-count"></span></summary><div id="events"></div></details><details id="state-details" hidden><summary>会话状态</summary><pre id="state-json"></pre></details><details id="logs-details" hidden><summary>运行日志</summary><pre id="logs"></pre></details></div>
+        </section>
+      </div>
+      <section class="panel code-panel"><div class="panel-heading"><h3><span class="step">03</span> 查看 Python 代码</h3><button id="copy-code" class="secondary">复制代码</button></div><div class="code-tabs" role="tablist"><button id="tab-demo" role="tab" aria-selected="true" class="active">运行示例</button><button id="tab-impl" role="tab" aria-selected="false">库实现</button></div><p id="code-caption" class="hint"></p><pre id="code" tabindex="0"></pre></section>
+    </article>
+  </section>
+  <section id="sources-view" hidden>
+    <div class="intro"><div><span class="eyebrow">READ · SEARCH · CONNECT</span><h1>回到知识的源头。</h1><p>搜索原始课程、Notebook 和本地库。只读源码，不执行课程文件。</p></div></div>
+    <div class="source-search"><input id="source-query" type="search" placeholder="搜索文件名或源码内容，例如 newsletter、RequestInput…" aria-label="搜索课程源码"><select id="source-group" aria-label="来源分组"><option value="">全部来源</option></select><button id="search-sources" class="primary">搜索</button></div>
+    <div class="source-grid"><section class="panel source-list-panel"><div class="panel-heading"><h3>匹配文件</h3><span id="source-total"></span></div><div id="source-results"></div><div class="pagination"><button id="source-prev" class="secondary">上一页</button><button id="source-next" class="secondary">下一页</button></div></section><section class="panel source-code-panel"><div class="panel-heading"><h3 id="source-name">选择一个文件</h3><button id="copy-source" class="secondary">复制</button></div><p id="source-path" class="hint">Notebook 仅显示代码和 Markdown 单元格，不加载历史输出。</p><pre id="source-code" tabindex="0">← 从左侧选择文件查看源码</pre></section></div>
+  </section>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+</main>
+</body></html>

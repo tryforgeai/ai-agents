@@ -1,0 +1,133 @@
+
+Start of main content
+Job title, keywords, or company
+City, state, zip code, or "remote"
+
+Search
+Indeed logo
+Indeed logo
+Senior Manager, Machine Learning Engineering
+Indeed (part of Recruit Holdings, Co., Ltd.)
+·
+4.2
+Remote
+Remote
+$193,000 - $402,000 a year
+ -  
+Full-time
+Apply with Indeed
+
+
+
+Job details navigation
+Job
+Job
+1 of 2
+Company
+Company
+2 of 2
+Job details
+$193,000 - $402,000 a year
+Paid parental leave, Parental leave, 401(k), Health insurance, Paid time off, Vision insurance, Dental insurance, Life insurance
+
+Show 3 more
+Full-time
+Remote
+Full job description
+Our Mission
+As the world’s number 1 job site*, our mission is to help people get jobs. We strive to cultivate an inclusive and accessible workplace where all people feel comfortable being themselves. We're looking to grow our teams with more people who share our enthusiasm for innovation and creating the best experience for job seekers.
+
+(*Comscore, Total Visits, March 2026)
+Day to Day
+At Indeed, our mission is to Help People Get Jobs. Marketplace Efficiency connects the right jobseekers with the right jobs and gives employers qualified candidates for their spend. The team balances the needs of jobseekers, employers, and overall marketplace health. Our levers are ranking, recommendation, auction and bidding, pricing, and budget optimization across Indeed's sponsored jobs advertising business.
+
+As the Senior Manager of Machine Learning Engineering on Marketplace Efficiency, you will lead multiple teams of machine learning engineers and data scientists. These teams include managers and senior technical leads. You will set the technical direction for the models and systems that decide which jobs appear, in what order, and at what price. These decisions affect millions of jobseekers and employers every day. You will partner with Product, Software Engineering, Data Science, and business leaders. Together, you will turn marketplace strategy into a roadmap, run rigorous experiments, and deliver measurable results for jobseekers, employers, and Indeed.
+
+AI and macroeconomic shifts are changing the labor market quickly. This role has a unique opportunity to shape how Indeed's marketplace adapts to meet that challenge.
+
+You will be able to work from anywhere within the United States for this role.
+
+Responsibilities
+Manage and grow multiple teams of machine learning engineers and data scientists, including first-line managers and senior technical leads. Hire, coach, and develop talent, and build a strong bench of future managers and technical leaders.
+Own the machine learning roadmap for ranking, recommendation, auction, and pricing systems, aligning the roadmap with Marketplace Efficiency and company goals.
+Define marketplace objective and guardrail metrics that trade off jobseeker, employer, and marketplace-health outcomes, and hold the teams accountable to these metrics.
+Raise the bar on experimentation by improving A/B testing methods for a two-sided marketplace, including interference, budget effects, and long-term outcomes.
+Drive the delivery of large, cross-team initiatives by setting clear expectations for scope, timelines, and quality, and delivering predictable results. Translate business goals, such as advertiser return, revenue, and jobseeker engagement, into machine learning solutions with Product, Engineering, and business partners.
+Represent Marketplace Efficiency in senior leadership forums, communicating results, risks, and tradeoffs to technical and executive audiences.
+Contribute directly when needed by reviewing designs, diving into code or data, and sharing best practices across the organization.
+Skills/Competencies
+Requires a Bachelor’s degree in Computer Science, Mathematics, Statistics, or related field and a minimum of 12 years of related experience; or a Master’s degree with a minimum of 8 years of experience; or a PhD with a minimum of 5 years experience
+Proven success as a manager of machine learning engineering or data science teams, including managing multiple teams or other managers, and a track record of coaching engineers and managers, growing careers, and building inclusive, high-performing teams.
+Experience delivering complex, large-scale machine learning systems to production, with a deep understanding of machine learning, statistical modeling, and the tradeoffs of deploying ML at scale.
+Experience building ranking, recommendation, or matching systems at scale, as well as experience with auction design, bidding, pricing, or budget optimization in an advertising system or marketplace.
+Experience running large-scale causal experiments.
+Well-versed in coding (Python, Java, Go, or C++), SQL engines such as Presto or Trino, and data processing frameworks such as Spark.
+Proven ability to turn complex data findings into business strategy and influence product, technical, and business direction across a large organization, with effective and inclusive verbal and written communication for technical, business, and executive audiences.
+Salary Range Transparency
+Tier 1 - United States of America $193,000 - 289,000 USD per year
+Tier 2 - United States of America $214,000 - 322,000 USD per year
+Tier 3 - United States of America $235,000 - 353,000 USD per year
+Tier 4 - N/A
+Tier 5 - United States of America $268,000 - 402,000 USD per year
+Salary Range Disclaimer
+The salary range for this role reflects the minimum and maximum compensation for the role. Offers are typically made between the range minimum and the range midpoint. Actual compensation will be determined based on job-related skills, experience, and expertise, as evaluated during the interview process. The range(s) listed is just one component of Indeed's total compensation package for employees. Other rewards may include quarterly bonuses, Restricted Stock Units (RSUs), a Paid Time Off policy, and many region-specific benefits. Compensation may also vary based on where a role is performed, as work locations are grouped into geographic pay tiers to reflect cost of labor differences in different geographic markets. Candidates can view geographic pay tiers by location on our career site (https://www.indeed.com/careers/paytiers), and recruiters can confirm how location is considered for a specific role.
+Benefits - Health, Work/Life Harmony, & Wellbeing
+We care about what you care about. We have a multitude of benefits to support Indeedians, as well as their pets, kids, and partners including medical, dental, vision, disability and life insurance. Indeedians are able to enroll in our company’s 401k plan, as well as an equity-based incentive program. Indeedians will also receive open paid time off, 11 paid holidays a year and up to 26 weeks of paid parental leave. For more information, select your country and learn more about our employee benefits, program, & perks at https://www.indeed.com/careers/benefits!
+Equal Opportunities and Accommodations Statement
+Indeed is deeply committed to building a workplace and global community where inclusion is not only valued, but prioritized. We’re proud to be an equal opportunity employer, seeking to create a welcoming and diverse environment. All qualified applicants will receive consideration for employment without regard to race, color, religion, gender, gender identity or expression, family status, marital status, sexual orientation, national origin, genetics, neuro-diversity, disability, age, or veteran status, or any other non-merit based or legally protected grounds.
+
+Indeed provides reasonable accommodations to qualified individuals with disabilities in the employment application process. To request an accommodation, please visit https://www.indeed.com/careers/accommodations. If you are requesting accommodation for an interview, please reach out at least one week in advance of your interview.
+
+For more information about our commitment to equal opportunity/affirmative action, please visit our Careers page (https://www.indeed.com/careers).
+
+Inclusion & Belonging
+
+Inclusion and belonging are fundamental to our hiring practices and company culture, forming an integral part of our vision for a better world of work. At Indeed, we’re committed to the wellbeing of our employees and on a mission to make this the best place to work and thrive. We believe that fostering an inclusive environment where every employee feels respected and accepted benefits everyone, fueling innovation and creativity.
+
+We value diverse experiences, including those who have had prior contact with the criminal legal system. We are committed to providing individuals with criminal records, including formerly incarcerated individuals, a fair chance at employment.
+
+Those with military experience are encouraged to apply. Equivalent expertise demonstrated through a combination of work experience, training, military experience, or education is welcome.
+Indeed’s Employee Recruiting Privacy Policy
+Like other employers Indeed uses our own technologies to help us find and attract top talent from around the world. In addition to our site’s user and privacy policy found at https://www.indeed.com/legal, we also want to make you aware of our recruitment specific privacy policy found at https://www.indeed.com/legal/indeed-jobs.
+
+Agency Disclaimer
+
+Indeed does not pay placement fees for unsolicited resumes or referrals from non-candidates, including search firms, staffing agencies, professional recruiters, fee-based referral services, and recruiting agencies (each individually, an "Agency"), subject to local laws. An Agency seeking a placement fee must obtain advance written approval from Indeed's internal Talent Acquisition team and execute a fee agreement with Indeed for each job opening before making a referral or submitting a resume for that opening.
+
+AI Notice
+
+Indeed is committed to ensuring fairness and transparency throughout our hiring process. We use artificial intelligence (AI) tools to assist in the screening, assessment, and selection of applicants for this position by analyzing information provided in resumes and applications. Our use of AI does not replace human decision-making.
+
+Unless otherwise notified, Indeed does not use AI constituting an AEDT or an ADMT as those tools are defined in applicable laws.
+
+The deadline to apply to this position is 10/16/26. Job postings may be extended at the hiring team’s discretion based on applicant volume.
+
+It is unlawful in Massachusetts to require or administer a lie detector test as a condition of employment or continued employment. An employer who violates this law shall be subject to criminal penalties and civil liability.
+
+#INDDATA
+
+Reference ID: 47876
+
+Reference ID: 47876
+
+This employer uses Indeed, Inc. to generate an AI-powered summary evaluation of your application for this job. By applying, you agree that your application will include such a summary. If you do not agree, do not apply through Indeed. Instead, contact the employer directly to find another way to apply.
+Accommodations
+If you would like to request an accommodation, contact the employer by email at accomodations@indeed.com.
+
+Report job
+Hiring Lab
+Career advice
+Browse jobs
+Browse companies
+Salaries
+Indeed Events
+Work at Indeed
+Countries
+About
+Help
+ESG at Indeed
+© 2026 Indeed
+Your Privacy Choices 
+Accessibility at Indeed
+Privacy Center and Ad Choices
+Terms

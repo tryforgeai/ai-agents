@@ -1,0 +1,9 @@
+cases:
+  - prompt: Draft a wedding invitation for Priya and Arjun on 12 June at the Taj Palace.
+    should_fire: true
+  - prompt: Create a wedding invite with the couple names, date, venue, and RSVP.
+    should_fire: true
+  - prompt: Write a birthday party card for my daughter's tenth birthday.
+    should_fire: false
+  - prompt: Compose a thank-you note to our guests after the ceremony.
+    should_fire: false

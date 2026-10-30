@@ -1,0 +1,11 @@
+# Behaviour tests for scientific-topic-summary: the LLM applies this skill (SKILL.md + L3 files)
+# to each input, and the reply is checked. Costs one LLM call per case;
+# replies vary, so rerun before blaming the procedure for a single failure.
+# Checks: must_contain / must_not_contain (exact, case-sensitive substrings),
+# must_match (regex), min_matches (regex + minimum count).
+cases:
+  - name: title, short body and references for a new topic
+    input: Summarize the Higgs boson for me.
+    must_match: ["(?i)higgs", "(?i)(references|further reading)"]
+    min_matches: {pattern: "(?m)^\\s*(\\d+[.)]|[-*])\\s+.*(\\d{4}|https?://)", count: 3}
+    must_not_contain: ["zeta", "Riemann"]

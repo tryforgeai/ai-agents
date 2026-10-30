@@ -1,0 +1,10 @@
+cases:
+  - prompt: >-
+      Here is my staged diff — write a commit message for me.
+    should_fire: true
+  - prompt: Suggest a PR title for these git changes.
+    should_fire: true
+  - prompt: Review this pull request for security issues.
+    should_fire: false
+  - prompt: Generate release notes for v2.0.
+    should_fire: false

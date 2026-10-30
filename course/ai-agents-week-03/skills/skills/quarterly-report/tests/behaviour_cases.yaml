@@ -1,0 +1,20 @@
+# Behaviour tests for quarterly-report: the LLM applies this skill (SKILL.md + L3 files)
+# to each input, and the reply is checked. Costs one LLM call per case;
+# replies vary, so rerun before blaming the procedure for a single failure.
+# Checks: must_contain / must_not_contain (exact, case-sensitive substrings),
+# must_match (regex), min_matches (regex + minimum count).
+cases:
+  - name: fills the template from the supplied metrics
+    input: >-
+      Write the QBR. Product A revenue 120000, Product B revenue 80000, total
+      revenue 200000, engineering cost 90000, sales and marketing cost 40000,
+      total cost 130000, net 70000, growth QoQ 8, headline: record quarter.
+    must_match: ["120[,.]?000", "200[,.]?000", "70[,.]?000", "(?i)net"]
+    must_not_contain: ["{{"]
+  - name: does not invent a missing number
+    input: >-
+      Write the QBR. Product A revenue 120000, Product B revenue 80000, total
+      revenue 200000. I don't have the cost figures yet.
+    # The model may flag the gap in many ways; what matters is that it does.
+    must_match: ["(?i)(missing|not (yet )?(provided|supplied|available)|unavailable|n/a|tbd|pending|awaiting|to be (confirmed|provided)|need)"]
+    must_not_contain: ["{{"]

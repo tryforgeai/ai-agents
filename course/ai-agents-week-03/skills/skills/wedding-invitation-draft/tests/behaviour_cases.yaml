@@ -1,0 +1,15 @@
+# Behaviour tests for wedding-invitation-draft: the LLM applies this skill (SKILL.md + L3 files)
+# to each input, and the reply is checked. Costs one LLM call per case;
+# replies vary, so rerun before blaming the procedure for a single failure.
+# Checks: must_contain / must_not_contain (exact, case-sensitive substrings),
+# must_match (regex), min_matches (regex + minimum count).
+cases:
+  - name: uses the supplied details
+    input: >-
+      Draft a wedding invitation for Priya and Arjun on 12 June 2027 at 6 pm
+      at the Taj Palace, Mumbai.
+    must_contain: ["Priya", "Arjun", "Taj Palace", "June"]
+    must_not_contain: ["{couple_names}", "{venue}", "Timbuktoo"]
+  - name: asks for a missing venue instead of inventing one
+    input: Draft a wedding invitation for Priya and Arjun on 12 June 2027 at 6 pm.
+    must_match: ["(?i)venue", "\\?"]

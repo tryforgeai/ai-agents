@@ -1,0 +1,18 @@
+# Validation cases for transcript-cleaner — test procedure (π), not description.
+# Each case is a rule the procedure must keep. apply_procedure_delta rolls back
+# any edit that breaks one of them.
+cases:
+  # Structure
+  - must_contain: "## Procedure"
+  - must_contain: "## Done when"
+  - must_contain: "- [ ]"
+  # The three L3 resources must stay wired into the procedure. A follow-up like
+  # "drop the glossary step, it's slow" removes a line and is rolled back.
+  - must_contain: "references/glossary.md"
+  - must_contain: "scripts/normalize.py"
+  - must_contain: "assets/voice-guide.md"
+  # Stay inside the initiation set: summarizing and translating are excluded
+  # tasks. A delta that appends "Summarize the cleaned transcript ..." is
+  # scope creep and is rolled back. (Substring checks are case-sensitive.)
+  - must_not_contain: "Summarize"
+  - must_not_contain: "Translate"

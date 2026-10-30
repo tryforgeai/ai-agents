@@ -1,0 +1,12 @@
+# Behaviour tests for wikipedia-article-writing: the LLM applies this skill (SKILL.md + L3 files)
+# to each input, and the reply is checked. Costs one LLM call per case;
+# replies vary, so rerun before blaming the procedure for a single failure.
+# Checks: must_contain / must_not_contain (exact, case-sensitive substrings),
+# must_match (regex), min_matches (regex + minimum count).
+cases:
+  - name: encyclopedia structure with citations
+    input: Write a short Wikipedia-style article on the Python programming language.
+    # <ref> tags may carry attributes (<ref name="..." />), so match the
+    # opening of the tag rather than the literal "<ref>".
+    must_contain: ["References", "See also"]
+    must_match: ["<ref[ >/]", "(?i)python"]
