@@ -1138,7 +1138,7 @@ Harry Beck 画伦敦地铁图是为了乘客的**决策**，不是为了地理�
 >
 > **deck p.122 · Milestone · Coda —「Back to Beck」：the label is the map**（19:58，截图 `uploads/1958-p122-back-to-beck.png`）
 >
-> - 画面是一张地铁线路图：几条彩色线路、站点和换乘站（大圆圈）——Harry Beck 1931 年的伦敦地铁图风格：**不按真实地理比例，只画乘客做决定需要的东西**（哪条线、在哪换乘）
+> - 画面是一张地铁线路图：几条彩色线路、站点和换乘站（大圆圈）——Harry Beck 的伦敦地铁图风格（1931 年设计、1933 年发布，✏️ 勘误 W6 #11）：**不按真实地理比例，只画乘客做决定需要的东西**（哪条线、在哪换乘）
 > - 副标题：**the label is the map**（label 就是地图）
 > - 我的理解：
 >   - **地图和 label 的共同点**：都是画给**陌生人**看的，帮他**做决定**；不追求完整，追求"做决定需要的信息都在、不需要的都不在"——就是礼貌规则
@@ -1862,7 +1862,7 @@ KV connector API
 | p.19 | **领导力路线**：preface + 十二扇门 + Act X 案例 + Act XI 五问 |
 | p.24 | *"The Genie's Kitchen, for tools. Hermes is the stranger."*；ledger 记的是**美元和 token，不是字数** |
 | p.27 | YAML 坑：`"off"` 必须加引号，裸 `off` 会被解析成布尔值 |
-| p.52 | 工具知识的三代祖先：**Gorilla**（2023，按 API 文档微调，新工具 = 新微调）· **Toolformer**（2023，自己学会停下来用计算器）· **ReAct**（2022，循环） |
+| p.52 | 工具知识的三代祖先：**Gorilla**（UC Berkeley，2023-05，按 API 文档微调；✏️ 勘误 W6 #7：同一篇还做了 retrieval-aware training，把检索到的文档拼进 prompt，能适应训练后变化的 API，所以「新工具 = 新微调」已部分解决）· **Toolformer**（2023，自己学会停下来用计算器）· **ReAct**（2022，循环） |
 | p.53 | Function calling（OpenAI，**2023-06**）让工具调用成了产品功能，但**厂商之间什么都没统一**；MCP 由 Anthropic 在 **2024-11-25** 发布 |
 | p.54 | 五部宪法的**版本名**：2024-11-05 founding（tools/resources/prompts，stdio + HTTP+SSE，sessions）· 2025-03-26 remote turn（授权框架、Streamable HTTP、**tool annotations**）· 2025-06-18 enterprise hardening（server 作为 OAuth resource server、elicitation、structured output）· 2025-11-25 anniversary（**实验性 tasks、URL 模式 elicitation**、client ID metadata）· 2026-07-28 stateless turn（无握手、无 session、多轮请求、扩展） |
 | p.56 | Agentic AI Foundation 成立于 **2025-12-09**，三个创始项目：Anthropic 的 **MCP**、Block 的 **goose**、OpenAI 的 **AGENTS.md**；A2A **2026-08-17** 加入 |

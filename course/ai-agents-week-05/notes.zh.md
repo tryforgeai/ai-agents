@@ -392,10 +392,10 @@ given 里涉及 g-022 / g-034 / g-038（以及 g-099 的 "from 9 to 10am"）。
 - ↔ Travel capstone：同类数据源只暴露一个工具（多个天气源在工具内部融合）；每个委员会 agent 只拿自己那几个工具；工具名和 description 要彼此**一眼可区分**
 - 候选技巧 #53/#54 合并为：**工具要少、要按任务切、要彼此不像、按角色限定**
 
-| p.14 | The Documentation Crisis · I —— **`abracadabra(x)`**（17:27） | 一个弱类型的 Python 函数**什么都没透露**：不知道输入是什么、输出是什么、用来干什么。*"The entire schema burden falls on the docstring — which developers rarely write."* |
+| p.14 | The Documentation Crisis · I —— **`abracadabra(x)`**（17:27） | 一个**没有类型标注**的 Python 函数**什么都没透露**：不知道输入是什么、输出是什么、用来干什么。*"The entire schema burden falls on the docstring — which developers rarely write."* |
 
 **p.14 解读**：就是白板上粉色那个 `def fortune(topic):` 的反面教材升级版。
-- schema 有两个信息来源：**类型标注**和 **docstring**。弱类型（参数没标注、返回值没标注、名字是 `x`）等于把全部说明责任丢给 docstring，而 docstring 恰恰是开发者最常偷懒不写的
+- schema 有两个信息来源：**类型标注**和 **docstring**。没有类型标注（参数没标注、返回值没标注、名字是 `x`；✏️ 勘误 W5 #12：Python 是**强类型 + 动态类型**，`"1" + 1` 会报错，弱类型的是 JavaScript）等于把全部说明责任丢给 docstring，而 docstring 恰恰是开发者最常偷懒不写的
 - 解法分两层：
   1. **让类型本身说话**：`Literal["economy", "business"]`、`Enum`、`date` 而不是 `str`、Pydantic 模型带字段说明和取值范围 → schema 自动变得精确，LLM 能填的空间变小
   2. **docstring 写全**：做什么、什么时候用、什么时候**不用**（#25）、参数的单位和时区（#8 #47）、返回什么
@@ -545,7 +545,7 @@ given 里涉及 g-022 / g-034 / g-038（以及 g-099 的 "from 9 to 10am"）。
 | 候选 | 一句话 | 来源 |
 | --- | --- | --- |
 | 工具粒度 | 工具少、按任务划分、互不相像、按角色限定 | p.9–12 |
-| 强类型 schema | 参数用强类型，schema 由签名生成 | p.14 |
+| 类型标注完整的 schema | 参数加精确的类型标注，schema 由签名生成 | p.14 |
 | #25 扩展到工具 | docstring 写清"什么时候用、什么时候不用" | p.15 |
 | 契约式设计 | 工具内做前置/后置检查；缺参数报错，不给默认值 | p.16、白板 3 |
 | 输出按意图裁剪 | 返回只含意图需要的字段，附来源和时间戳 | p.17 |
@@ -946,7 +946,7 @@ kit doctor 候选检查：`@mcp.tool` 缺类型注解或 docstring；docstring �
 - 顶部的 **MIG 控制** 正好对应聊天区 Ritu 说的 MIG：一张卡能切成最多 7 个独立实例（按记忆）
 - 一句话：今天讲的所有瓶颈（算力、HBM 带宽、L2/SRAM、NVLink、PCIe）都能在这一张图上找到对应位置
 
-**白板 2（约 16:06）· MCP 架构**：左边是 **Agentic System**，里面嵌着一个 **mcp-client**；右边是 **MCP Server**，本质上就是一个 **web / HTTP server**，里面挂着 tool1、tool2……；两者之间双向通信（client 发请求，server 回结果）。
+**白板 2（约 16:06）· MCP 架构**：左边是 **Agentic System**，里面嵌着一个 **mcp-client**；右边是 **MCP Server**（✏️ 勘误 W5 #24：server 是一个**角色**，不是一台机器——生产环境建议走 HTTP，但也可以是 host 以子进程启动、走 stdin/stdout 的本地程序（stdio 传输），FastMCP 的 `mcp.run()` 默认就是 stdio；白板画的是 HTTP 形态），里面挂着 tool1、tool2……；两者之间双向通信（client 发请求，server 回结果）。
 
 **课堂问题：MCP 里的 schema 是什么？** 每个工具都要声明三样东西：`name`、`description`、`inputSchema`（JSON Schema 格式，写明参数名、类型、哪些必填、取值范围），可选 `outputSchema`。client 先调 `tools/list` 拿到所有工具的 schema，交给 LLM 看。LLM 据此决定**调哪个工具、参数怎么填**；server 收到调用后再按 schema 校验参数。一句话：**schema 是工具和 LLM 之间的合同**（W3 说过 tool description 是"伪装成文档的合同"）。↔ kit 里的 `REQUEST_JSON_SCHEMA` 是同一个思路：用 schema 约束 LLM 的输出，不合格就拒收。
 

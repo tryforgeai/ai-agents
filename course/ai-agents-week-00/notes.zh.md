@@ -17,7 +17,7 @@
 - `uploads/slide-09-aladdin-lamp.png`（p.9 **Aladdin's lamp** — the lamp 揭晓）
 - `uploads/slide-10-golem.png`（p.10 The Golem — system prompt + kill switch）
 - `uploads/slide-11-ifa-orunmila.png`（p.11 Ifá / Orunmila — communal agency）
-- `uploads/slide-12-baobab-proverb.png`（p.12 约鲁巴谚语 — baobab tree）
+- `uploads/slide-12-baobab-proverb.png`（p.12 Akan / Ewe 谚语（加纳、多哥、贝宁；Ewe 原文 "Nunya, adidoe, asi metunee o."；✏️ 勘误 W1 #15：不是约鲁巴谚语） — baobab tree）
 - `uploads/slide-13-witness-ledger.png`（p.13 The Witness — **ledger 伏笔**）
 - `uploads/slide-14-resonances.png`（p.14 Resonances — ACT I 收束）
 - `uploads/slide-15-act1-takeaways.png`（p.15 ACT I Key Takeaways）
@@ -57,7 +57,7 @@
 - ⚠️ **p.47、p.49–51 缺**（漏截）
 - ⚠️ **p.35、p.38、p.40 缺**（漏截）
 - ⚠️ **p.17、p.25 缺**（漏截，课后补）
-- 📖 参考阅读：[`ref-harness-engineering.zh.md`](ref-harness-engineering.zh.md)（Addy Osmani 原文精读 —— **p.21/p.22 的直接来源**）
+- 📖 参考阅读：[`ref-harness-engineering.zh.md`](ref-harness-engineering.zh.md)（Addy Osmani 原文精读 —— p.21/p.22 那句话的出处；✏️ 勘误 W1 #6：Top-30 → Top-5 的**数据**来自 LangChain 2026-02-17 的博客 *Improving Deep Agents with Harness Engineering*（52.8% → 66.5%，Terminal-Bench `2601.11868`），Osmani 是评论者）
 - 讲义 PDF：待补
 - 下午 lab 仓库 / 代码：待补
 
@@ -153,7 +153,7 @@
 | p.8 | **偃师献技**（《列子·汤问》，周穆王） | 真人大小的自动人偶，能走能唱还调戏王的姬妾；拆开看，内部脏腑俱全。**抽掉一个"器官"，就精确地坏掉一个功能。** | *Parts that map to functions* —— **部件↔功能一一对应**。讲师明说「hold that for Act IV」 |
 | p.9 | **阿拉丁神灯**（THE GENIE） | *The genie is the oldest dream of **delegation**: state the goal, and a power you do not fully understand carries it out — **often too literally**.* | **委托**的最古老形态。结论句：*"Every prompt-engineering horror story is a genie story."* |
 | p.10 | **泥人 Golem**（希伯来传统） | 靠塞进嘴里的一个**写下的词**驱动；**抹掉一个字母它就停**。 | *an agent with a **system prompt** and a **kill switch***——而传说讲的多半是**造它的人忘了第二个**的下场 |
-| p.11 | **Ifá / Orunmila 的使者**（约鲁巴，西非） | Orunmila 的使者在人间**自主行动**，遵循**共享的目标**。 | **Agency is communal** —— 智慧大到一个个体装不下，于是**分给许多各承一部分的人**。这是**多 agent** 的原型 |
+| p.11 | **Ifá / Orunmila**（约鲁巴，西非） | 幻灯片：Orunmila 的使者在人间**自主行动**，遵循**共享的目标**。✏️ 勘误 W1 #14：Orunmila 本身是一位 orisha（智慧与占卜之神，与 Ifá 典籍的创立有关），**不是使者，也不派遣使者**；尊号 Igbakeji Olodumare（仅次于 Olodumare）、Eleri ipin（命运的见证者）。至高神是 Olodumare（又称 Olorun）。课上已当场更正幻灯片这句。 | **Agency is communal** —— 智慧大到一个个体装不下，于是**分给许多各承一部分的人**。这是**多 agent** 的原型 |
 |  |  |  |  |
 
 #### p.8 偃师 — 展开
@@ -247,7 +247,9 @@
 
 > *"Orunmila's emissaries act autonomously in the human world under **shared goals**. Agency is **communal** — wisdom too vast for one alone, distributed across many who each carry a part."*
 
-约鲁巴的 Ifá 占卜体系里，智慧不集中在一个神身上，而是**分散**的：Orunmila 派出使者，每个使者**自主行动**，但**共享同一个目标**。
+> ✏️ 勘误 W1 #14：Orunmila 本身是一位 orisha（智慧与占卜之神，与 Ifá 典籍的创立有关），**不是使者，也不派遣使者**；尊号 Igbakeji Olodumare（仅次于 Olodumare）、Eleri ipin（命运的见证者）。至高神是 Olodumare（又称 Olorun）。课上已当场更正幻灯片这句。
+
+幻灯片想表达的意思：智慧**分散**在许多各承一部分的人身上，每个**自主行动**，但**共享同一个目标**。
 
 **这是前三个神话都没有的一层：**
 
@@ -269,7 +271,7 @@
 
 #### p.12 猴面包树谚语 — **全天的伏笔**
 
-> **"Wisdom is like a baobab tree; no one individual can embrace it."**（约鲁巴谚语）
+> **"Wisdom is like a baobab tree; no one individual can embrace it."**（Akan / Ewe 谚语（加纳、多哥、贝宁；Ewe 原文 "Nunya, adidoe, asi metunee o."；✏️ 勘误 W1 #15：不是约鲁巴谚语））
 >
 > *"Remember the tree. By the last lecture you will know **when it is a blessing — and when only a condition**."*
 
@@ -375,7 +377,7 @@
 | p.8 | 偃师人偶 | 好系统应当**可拆解、可归因** | anatomy / trace |
 | p.9 | 神灯精灵 | 委托的**规格永远不完整**，执行者照字面办 | prompt / spec gap |
 | p.10 | 泥人 Golem | 必须有**启动词**，更必须有**停机键** | system prompt / **governor** |
-| p.11 | Ifá 使者 | 能动性可以是**共享目标下的分布式协作** | **multi-agent** / 编排 |
+| p.11 | Ifá / Orunmila | 能动性可以是**共享目标下的分布式协作** | **multi-agent** / 编排 |
 | p.12 | 猴面包树 | 合抱**有时是祝福，有时只是没办法** | 多 agent 的**取舍判据**（留到最后一讲） |
 | p.13 | Orunmila 见证者 | **不问当事人，读仪器**——在场的记录胜过事后的自述 | **ledger / trace**（下午揭晓） |
 
@@ -576,7 +578,9 @@
 
 > **一个反直觉的细节**：*"Opus 在 Claude Code 的 harness 里，比在更薄的封装里得分明显更高。"*
 >
-> 但原文（Osmani）还有**另一半**：Viv 团队恰恰是**离开** Claude Code、用自定义 harness 才冲到 Top-5 的。两者不矛盾——原因是**模型 post-training 与 harness 耦合**（协同训练导致过拟合）：
+> ✏️ 勘误 W3 #14 / W1 #6：Top-30 → Top-5 是 **LangChain** 的 coding agent 在 Terminal-Bench 2.0 上的结果（博客 *Improving Deep Agents with Harness Engineering*，2026-02-17）：模型一直是 **GPT-5.2-Codex**，只改 harness，**52.8% → 66.5%**（+13.7）；和「离开 Claude Code」无关。Osmani 是评论者，不是数据出处。下面关于耦合的论点仍可保留。
+>
+> ~~但原文（Osmani）还有另一半：Viv 团队恰恰是离开 Claude Code、用自定义 harness 才冲到 Top-5 的。~~两者不矛盾——原因是**模型 post-training 与 harness 耦合**（协同训练导致过拟合）：
 > - 比"更薄的封装"好 → 因为 Claude Code 的 harness 就是它训练时用的那个
 > - 但**为你的任务专门设计**的 harness 可以更好
 >
@@ -766,6 +770,8 @@ teamwork / planning / decomposition —— 人类解决复杂问题的方式，*
 
 > **← 这是 p.12 猴面包树伏笔的第一次部分揭晓。**
 > 判据雏形出现了：**多 agent 的触发条件是"信息量单个装不下"**，不是"任务复杂"、不是"看起来该分工"。
+>
+> ✏️ 勘误 W1 #5：新的外部信息是多 agent 能多出价值的**必要条件，不是充分条件**——一个汇总了所有信号的集中决策者仍然不比多 agent 差，所以这是上限，不是许可。出处 Ao, Gao, Simchi-Levi `arXiv:2603.26993` Proposition 6（「dominance theorem」是课程自己的叫法）；经验数据见 Kim et al., Nature Machine Intelligence 2026, `2512.08296`。
 >
 > 也就是说：**blessing = 信息确实超出单个 context；condition = 你只是习惯性地拆了。**
 >
@@ -1275,7 +1281,7 @@ Round 3 的人**理论上仍能走到**（2/3 的信号是真的，多采样就�
 
 ### ⭐ p.42 **Kybernetes — the steersman**（舵手）
 
-> *"**Harness** comes from **tack and bridle** — the control of an animal — **and I dislike it for that**. The field's older word is kinder: **kybernetes**, the helmsman, root of both **governor** and **cybernetics**. **The sea does not obey him; he reads it and corrects.**"*
+> ✏️ 幻灯片原话，词源有误，见勘误 W1 #4 → *"**Harness** comes from **tack and bridle** — the control of an animal — **and I dislike it for that**. The field's older word is kinder: **kybernetes**, the helmsman, root of both **governor** and **cybernetics**. **The sea does not obey him; he reads it and corrects.**"*
 >
 > ⭐ ***"We are not breaking a horse. We are learning to steer."***
 
@@ -1283,7 +1289,7 @@ Round 3 的人**理论上仍能走到**（2/3 的信号是真的，多采样就�
 
 | 词 | 词源 | 隐含的关系 |
 | --- | --- | --- |
-| **harness** | 马具、缰绳 —— **驯服动物** | **压制**：对方有意志，我要制服它 |
+| **harness** | 讲师理解为马具、缰绳 —— **驯服动物**（✏️ 勘误 W1 #4：本义是「装备」） | **压制**：对方有意志，我要制服它 |
 | **kybernetes**（希腊语 κυβερνήτης） | **舵手** | **导引**：对方（海）无意志，我读它、顺它、修正 |
 
 **词源链**：kybernetes → 拉丁语 gubernator → **governor**；同时也是 **cybernetics**（控制论）的词根。
@@ -1323,7 +1329,7 @@ p.41 给了 governor 的**机械原型**（瓦特），p.42 给它的**语义根
 
 > **governor = 一个读取输出并修正输入的机构；它的本质不是压制，是导引。**
 
-> **我的修正**：我之前把 harness 译作"外壳"并建议不译。讲师这里说他**不喜欢 harness 这个词**（因为它是马具）。
+> **我的修正**：我之前把 harness 译作"外壳"并建议不译。讲师这里说他**不喜欢 harness 这个词**（因为他认为它是马具）（✏️ 勘误 W1 #4：词源其实相反——harness 来自古法语 *harneis*「武器、装备」，可能源自古诺尔斯语 \*hernest「军需」；本义是盔甲和战马的装具，即「装备好、让它能上路」，拉牲口的意思 14 世纪初才有，比喻义「驾驭」到 1690 年代前后）。
 > → 如果要中译，**"舵"这一系的词（掌舵、舵手、导航）比"驾驭/约束"更贴他的本意。**
 > → 但注意：**术语仍然用 harness**（行业既定），他只是在哲学上做了区分。
 
@@ -1392,7 +1398,7 @@ p.41 给了 governor 的**机械原型**（瓦特），p.42 给它的**语义根
 2. **检查点的价值 = 把 n 重置。** 所以检查点该放在**误差会被放大**的地方（p.37 杖顶），且必须**可信**（p.39 Round 3）。
 3. **horizon（能跑多远）不是模型属性，是 harness 属性。**
 
-> ⚠️ **待核实**：*"a harnessed agent ran over a million steps with zero errors"* —— 具体指哪个系统 / 哪份报告？记入待办。
+> ✏️ 已查到（勘误 W1 #10）：Meyerson et al., *Solving a Million-Step LLM Task with Zero Errors*，`arXiv:2511.09030`，**2025-11-12**（Cognizant AI Lab + UT Austin）。方法 **MAKER**，任务是 20 盘汉诺塔，共 **1,048,575 步零错误**，用小的非推理模型。幻灯片写的 2026 有误。
 
 ---
 
@@ -2894,7 +2900,7 @@ STEP 10 Light the lamp    lamp lit ← 高亮，真的成功
 - [ ] **补 p.17、p.25 截图**（漏了）
 - [ ] 🔍 **查 p.29 提到的 "first controlled studies of when a team beats a soloist"** —— 具体是哪些研究、结论是什么（多 agent 判据的实证依据）
 - [ ] 核实 p.28「MCP SDK 每月五亿次下载」的口径
-- [ ] 🔍 查 p.43「2026 年某个 harnessed agent 跑了一百万步零错误」—— 是哪个系统/哪份报告
+- [x] 🔍 查 p.43 百万步零错误 → MAKER，`2511.09030`，2025-11
 - [ ] 补 p.15「three things to carry forward」的第三样（slide 上只有两段）
 - [ ] 补白板 / 关键 slide 截图
 - [ ] 回填 `index.md` 三个词的「现场确认」列（尤其 **the lamp** 落在哪一幕）

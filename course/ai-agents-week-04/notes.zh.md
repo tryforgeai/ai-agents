@@ -65,7 +65,7 @@
 
 ## 白板：为什么无关上下文有成本
 
-- **A = softmax(⟨K,Q⟩ / √d) · V**。softmax 让所有 token 的权重总和为 1，注意力是固定预算；无关 token 越多，相关内容分到的份额越少 → p.32 曲线的直觉来源。
+- **Attention(Q,K,V) = softmax(QKᵀ / √d_k) · V**（Vaswani et al. 2017；板书写成 ⟨K,Q⟩，✏️ 勘误 W4 #6：QKᵀ 的第 i 行是第 i 个 query 对所有 key 的分数，softmax 沿行归一化；写成 KQᵀ 会在错误的轴上归一化）。softmax 让所有 token 的权重总和为 1，注意力是固定预算；无关 token 越多，相关内容分到的份额越少 → p.32 曲线的直觉来源。
 - **Knapsack**：上下文窗口是容量有限的背包，memory、skill、工具结果都在抢位置 → 对应 VoL(s) = pₛ·gₛ − κ(cₛ)。
 - **θ → response**：权重固定，harness 能控制的只有背包里装什么（context engineering）。
 
@@ -327,7 +327,8 @@ pdf-extract/
 ---
 name: invoice-filler
 description: Fills vendor invoices…
-version: 2.1.0
+metadata:
+  version: "2.1.0"   # 版本放 metadata 里；顶层 version 不合规范（勘误 W4 #2）
 allowed-tools: [Read, Write]
 ---
 ```
@@ -335,14 +336,14 @@ allowed-tools: [Read, Write]
 | 字段 | 谁读 | 作用 |
 | --- | --- | --- |
 | `description` | **Router** | 选不选它（要有区分度：做什么 / 何时用 / 何时不用） |
-| `name` + `version` | **Index** | 编目、版本管理（语义化版本） |
+| `name` + `metadata.version` | **Index** | 编目、版本管理（语义化版本；version 必须放 `metadata` 下（勘误 W4 #2）） |
 | `allowed-tools` | **Security** | 沙箱：这个 skill 最多能碰什么 |
 
 - **Problem**：metadata 才是 runtime 和 router 真正读的部分，却总是最后才随手补上。
 - **Fix**：把 frontmatter 当严格合同：有区分度的 description、语义化版本、声明可以触碰的工具。
 - **Payoff**：可被选中、可治理、可沙箱化——合同正好是索引和安全审查要读的东西。
 
-⚠️ **与晚间 Lab 的兼容约束不冲突但要分清**：Lab 要求 front matter **先只用 `name` 和 `description`**，为了在 Hermes 与 Claude Desktop 都能加载。`version`、`allowed-tools` 是否被识别取决于客户端，用之前先查该客户端支持哪些字段。
+⚠️ **与晚间 Lab 的兼容约束不冲突但要分清**：Lab 要求 front matter **先只用 `name` 和 `description`**，为了在 Hermes 与 Claude Desktop 都能加载。✏️ 更正（勘误 W4 #2）：规范只允许 6 个顶层字段——必填 `name`、`description`，可选 `license`、`compatibility`、`metadata`、`allowed-tools`。`allowed-tools` 是规范内的可选字段；**顶层 `version:` 不合规范**，claude.ai 上传、Skills API、打包器和官方校验器都会硬报错（"Unexpected key(s)"），只有 Claude Code 会忽略。版本写成 `metadata: { version: "1.0" }`（加引号）。
 
 **`allowed-tools` 的意义**：上周市场插曲讲过，第三方 skill 同时带来指令和代码两类攻击面。声明 `[Read, Write]` 就等于告诉审查者和 runtime："它不需要网络、不需要 Bash"——超出声明就是红旗。
 
@@ -372,7 +373,8 @@ description: Turn a forwarded meeting message into a calendar invite file
   calendar", or forwards a meeting message asking to schedule it. Do not use
   for sending invites, editing or deleting existing events, or general
   time and date questions.
-version: 1.2.0
+metadata:
+  version: "1.2.0"
 allowed-tools: [Read, Write, Bash]
 ---
 ```
@@ -383,12 +385,12 @@ allowed-tools: [Read, Write, Bash]
 | description 第 1 句 | Router | **做什么**：三种输出（.ics / 说明 / 一个问题） |
 | description "Use when…" | Router | **何时用**：用户真会说的原话 |
 | description "Do not use…" | Router | **何时不用**：发送邀请（Dry-Run 边界）、改已有事件、一般时间问题 |
-| `version: 1.2.0` | Index | 语义化版本：改规则行为升 minor，改输出格式升 major |
+| `metadata.version: "1.2.0"` | Index | 语义化版本（不能放顶层（勘误 W4 #2））：改规则行为升 minor，改输出格式升 major |
 | `allowed-tools` | Security | 读 profile / 日历、写 .ics、跑 `scripts/`；**没有网络** → 不可能"顺手发出邀请" |
 
-⚠️ 晚间 Lab 打包时先删掉 `version` 和 `allowed-tools`，只留 `name` + `description`，确保 Hermes 与 Claude Desktop 都能加载。
+⚠️ 晚间 Lab 打包时先删掉 `metadata` 和 `allowed-tools`，只留 `name` + `description`，确保 Hermes 与 Claude Desktop 都能加载。
 
-**对照自己的 `paper-deep-read`**：description 已经符合合同——做什么（论文 → 中文精读笔记，输出到 vault）、何时用（「精读」「读一下这篇」「照老规矩整理」等原话）、何时不用（摘要、单个问题、跨论文对比、课程讲义、翻译、纯 PDF 提取）都写全了；排除项里点名"那是课程周笔记"，正是防 Collision。可补的只有 `version`（若客户端支持），以及确认没有用到 `<` `>`。
+**对照自己的 `paper-deep-read`**：description 已经符合合同——做什么（论文 → 中文精读笔记，输出到 vault）、何时用（「精读」「读一下这篇」「照老规矩整理」等原话）、何时不用（摘要、单个问题、跨论文对比、课程讲义、翻译、纯 PDF 提取）都写全了；排除项里点名"那是课程周笔记"，正是防 Collision。可补的只有 `metadata: { version: "x.y" }`（放 metadata 下所有客户端都接受（勘误 W4 #2）），以及确认没有用到 `<` `>`。
 
 ---
 
@@ -448,7 +450,7 @@ allowed-tools: [Read, Write, Bash]
 
 ## p.81 A Pattern Up Close — Dry-Run / Preview
 
-用经典模式语言的四段式（Problem / Forces / Solution / Consequence）细讲一个模式：
+用软件模式社区的四段式（Problem / Forces / Solution / Consequence）细讲一个模式（✏️ 勘误 W4 #13：Alexander 的模式只写 context、problem、forces 和用 "Therefore:" 引出的 solution；**consequences 这一栏来自四人帮**（Gamma, Helm, Johnson, Vlissides 1994）的模板，五段式是软件模式社区合成的。模式目录在 *A Pattern Language*（1977，253 个模式），*The Timeless Way of Building*（1979）讲背后的理论）：
 
 - **Problem**：一个后果重大、难以撤回的动作。
 - **Forces**：自主和速度 vs. 做错一次不可逆动作的代价。
@@ -629,7 +631,7 @@ guardrail 挡"被禁止的"，dry-run 挡"被允许但错了的"——退款给�
 
 **为什么 2 → 3 最关键**
 - 第 2 级的库越大，p.82 的坏味道越多：触发冲突、悄悄过期，而且没有人发现。
-- 证据：SkillsBench——精选 skill +16.2 分，自生成 −1.3 分，2–3 个胜过 4 个以上。**差别在策展和评测，不在数量。**
+- 证据：SkillsBench——精选 skill +16.2 分，自生成 −1.3 分，2–3 个胜过 4 个以上（✏️ 勘误 W3 的数字：33.9% → 50.5%；自生成降 8–12 分；1–3 个 +18–19、4+ 个 +10）。**差别在策展和评测，不在数量。**
 - 第 4 级依赖第 3 级：GEPA 要读失败 trace 才能反思修改；没有 eval，就没有可读的失败。
 
 **自查**：`paper-deep-read` 有 `tests/firing-tests.md`（firing test）+ `scripts/check_numbers.py`（behaviour 检查）→ 已经摸到第 3 级的门；缺的是 governance（版本、发布后记录触发与效果）。`when-the-time-is-right` 有 100 个公开案例 + `check.py`，但目前只测了脚本层，模型读取层的 behaviour test 还没跑。

@@ -46,6 +46,8 @@ harness = **除模型之外的一切代码、配置、执行逻辑**。裸模型
 
 **⭐ 硬数据**：Terminal Bench 2.0 上，**同一个 Claude Opus 4.6**，跑在 Claude Code 里的分数**远低于**跑在定制 harness 里。Viv 的团队**只改 harness**，把一个 coding agent 从 Top 30 推到 Top 5。
 
+> ✏️ 勘误 W1 #6 / W3 #14：Top 30 → Top 5 是 **LangChain** 的结果，模型一直是 **GPT-5.2-Codex**（不是上一句的 Opus 4.6），Terminal-Bench 2.0 上 **52.8% → 66.5%**（+13.7），出处 *Improving Deep Agents with Harness Engineering*（2026-02-17）。Opus 4.6 那句勘误没有提及，未核实。
+
 > 原因：模型的 post-training 和它训练时所用的 harness **是耦合的**。换个 harness、配上更适合你代码库的工具和更紧的反压信号，能**解锁原 harness 浪费掉的能力**。
 
 > **结论**：*"今天模型能做的，和你看到它做的，之间那道差距，主要是 harness 的差距。"*

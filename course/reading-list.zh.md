@@ -60,7 +60,7 @@
 
 ## 📌 记忆专题（三层各对应一篇 + 一篇管注入）
 
-Week 01 补上了 Week 00 缺失的记忆三分法（episodic / semantic / procedural），对应论文：
+Week 01 补上了 Week 00 缺失的记忆分类。✏️ 勘误 W1 #8：课上是 CoALA（`2309.02427`）的**四种**——working（上下文窗口）+ episodic / semantic / procedural；下表对应的是三种长期记忆：
 
 | 论文 | 管哪层 | 核心 |
 | --- | --- | --- |
@@ -385,6 +385,8 @@ Rerank 只解决候选排序。记忆检索多两个轴、多一道工序：
 > - **2–3 个胜过 4+ 个** —— **这是 κ 的直接实测**，而且拐点低得惊人
 > - 精选 skill **+16.2** vs 自生成 **−1.3** —— **差的不是数量，是策展**
 >
+> ✏️ 勘误 W3 版本的 SkillsBench 数字：精选 skill 让任务成功率 **33.9% → 50.5%**；自生成 skill 在测过的三种配置上 **降 8–12 分**；给 1–3 个 skill 的任务涨 **18–19 分**、4 个以上涨 **10 分**；首版里带 skill 的 Haiku 4.5（27.7%）胜过不带的 Opus 4.5（22.0%）。笔记里的 +16.2 / −1.3 可能出自论文的另一个版本或口径，方向一致，引用时以勘误为准。
+>
 > ↔ 和 SRA 合起来看：**SkillsBench 说"少而精"，SRA 说"大库里模型不会挑"。两篇指向同一个结论——瓶颈在选择，不在拥有。**
 
 ⚠️ **SkillsBench 作者单位很分散**（BenchFlow / Amazon / Ohio State / Dartmouth / Stanford / UC Davis / CMU / UC Berkeley / Independent），引用时留意这是个松散协作，不是单一实验室。
@@ -404,7 +406,7 @@ Rerank 只解决候选排序。记忆检索多两个轴、多一道工序：
 
 ## 相关
 
-- [`ai-agents-week-00/ref-harness-engineering.zh.md`](ai-agents-week-00/ref-harness-engineering.zh.md) —— Addy Osmani《Agent Harness Engineering》精读（p.22 那句的出处）
+- [`ai-agents-week-00/ref-harness-engineering.zh.md`](ai-agents-week-00/ref-harness-engineering.zh.md) —— Addy Osmani《Agent Harness Engineering》精读（p.22 那句的出处；Terminal-Bench 数据本身出自 LangChain 2026-02-17 博客，勘误 W1 #6）
 - [`ai-agents-week-01/delta.zh.md`](ai-agents-week-01/delta.zh.md)
 - [`ai-agents-week-02/index.md`](ai-agents-week-02/index.md) —— 提示词周
 - [`ai-agents-week-03/index.md`](ai-agents-week-03/index.md) —— Skillcraft

@@ -37,7 +37,7 @@ python3 check.py g-001 --invite <ics>        # 单例官方判分
   - input_schema：`{'type': 'object', 'additionalProperties': False, 'properties': {'name': {'type': 'string'}}, 'required': ['name']}`
 - `call_tool` 结果：`content=[TextContent('Hello, Ford!')]`，`structured_content={'result': 'Hello, Ford!'}`，`is_error=False`
 - 观察：
-  - `name: str` → `type: string`，没有默认值 → `required`；`additionalProperties: False` 拒绝多余参数（白板 3、Tools Prelude p.14 强类型）
+  - `name: str` → `type: string`，没有默认值 → `required`；`additionalProperties: False` 拒绝多余参数（白板 3、Tools Prelude p.14 类型标注）
   - 返回值有两份：给模型读的文本 `content` + 给代码用的 `structured_content`（p.17 输出）
   - `is_error` 是协议级的错误标记（p.16 契约：失败要显式报错）
   - SDK v2 把 `inputSchema` 改名为 `input_schema`（弃用警告）
@@ -53,7 +53,7 @@ python3 check.py g-001 --invite <ics>        # 单例官方判分
 
 - 有类型版本（`name: str`）：**被拦下**
   `ToolError - 1 validation error for call[greet] / name / Input should be a valid string [type=string_type, input_value=123, input_type=int]`
-- 拦截发生在 FastMCP（pydantic v2 校验）层，函数体根本没执行；pydantic v2 默认**不会**把 int 偷偷转成 str
+- 拦截发生在 FastMCP（pydantic v2 校验）层，函数体根本没执行；pydantic v2 默认**不会**把 int 偷偷转成 str（✏️ 勘误 W5 #12 补充：但 FastMCP 默认会转换兼容的值，比如 `"10"` → `10`；要拒收得设 `strict_input_validation=True`）
 - 错误信息写明了哪个参数、期望什么、实际收到什么 → 模型拿到这条 ToolError 可以自己改正重试（#48：说清楚是谁的问题、怎么改）
 - 无类型版本（`def greet(name):`）：**悄悄通过** → `Hello, 123! | is_error = False`。错误的值进了函数体，没有任何报错
 - 对照结论：同一个错误输入，有类型 = 入口拦下并说明原因；无类型 = 静默接受、产出看似正常的结果。后者更危险，因为下游看不出问题

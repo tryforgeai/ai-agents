@@ -334,7 +334,7 @@ The transcript reads as the author would have written it.
 
 ## ACT V · Design Patterns（p.67–77）
 
-**压缩过的经验（p.68）** 按 Christopher Alexander 的 pattern language 体例：**context · problem · forces · solution · consequences**。一个健康的 skill 同时实例化好几个模式。
+**压缩过的经验（p.68）** 按软件模式社区的体例：**context · problem · forces · solution · consequences**（✏️ 勘误 W4 #13：Alexander 的模式只写 context、problem、forces 和用 "Therefore:" 引出的 solution；**consequences 这一栏来自四人帮**（Gamma, Helm, Johnson, Vlissides 1994）的模板，五段式是软件模式社区合成的。模式目录在 *A Pattern Language*（1977，253 个模式），*The Timeless Way of Building*（1979）讲背后的理论）。一个健康的 skill 同时实例化好几个模式。
 
 **怎么读一个模式（p.69）** 它解决的问题 / 张力中的受力 / 解法的形状 / **代价**——你得到什么、你付出什么。
 
@@ -433,7 +433,7 @@ The transcript reads as the author would have written it.
 > | **Procedural** | 做法 | **skills**（本周主题） | 通常人来写 |
 >
 > 几条：
-> - **只有 operational 会消失**——另外三种是存储，它是每轮被重新拼出来的。**渐进披露管的就是"这一轮往 operational memory 里放什么"**，`VoL = p·g − κ` 算的正是这件事。
+> - **只有 operational 会消失**——另外三种是存储，它是每轮被重新拼出来的。（✏️ 勘误 W3 #1：但已加载的 skill 正文**不会自动消失**，它一直留在对话历史里、每轮都要付 token，只有压缩上下文时才可能被换掉。）**渐进披露管的就是"这一轮往 operational memory 里放什么"**，`VoL = p·g − κ` 算的正是这件事。
 > - 课上用的词是 **operational**，不是认知科学常用的 **working**（Baddeley）。Week 01 的三分法（episodic / semantic / procedural，见 [`../ai-agents-week-01/delta.zh.md`](../ai-agents-week-01/delta.zh.md)）前面补上这一种就是四种。学术上对应 **CoALA**（Sumers, Yao, Narasimhan & Griffiths, 2023）。
 > - **semantic 的蒸馏那步没人把关**：客户说"这次要便宜的"（episodic 事实）→ 模型记成"该客户价格敏感"（semantic 断言）。
 > - **procedural 抗外化**，所以 Voyager 存成可执行代码而非文字总结——代码自带验证，对应 p.45 *"the prose decides when, the code guarantees how"*。
@@ -634,7 +634,7 @@ Reflexion: ℓ = Reflect(τ, R)     →  context   便宜、局部、可读—�
 
 ### p.48 ⚠️ USB-C 这个比喻有局限
 
-**USB-C 统一的是接口形状，而这个标准约束的只有 `name` 和 `description` 两个字段——正文完全不管。**
+**USB-C 统一的是接口形状，而这个标准只定义 6 个 front matter 字段（必填 `name`、`description`；可选 `license`、`compatibility`、`metadata`、`allowed-tools`），其余键都要放进 `metadata`——正文完全不管。**（✏️ 勘误 W4 #2）
 
 **所以它更像"统一了信封尺寸"，不是"统一了语言"。** 这正好解释了第二场那几个数字：
 
@@ -786,7 +786,7 @@ one pass only                      ←  限定【轮次】
 
 **p.73 的 Dry-Run 是唯一写全五部分的**，而且 consequence 诚实地写了代价："**the cost is one more round-trip with a human**"。
 
-⭐ **一个结构巧合：Alexander 的格式和 SKILL.md 是同构的。**
+⭐ **一个结构巧合：模式的五段式和 SKILL.md 是同构的。**（✏️ 勘误 W4 #13：前四段来自 Alexander，consequences 来自四人帮）
 
 ```
 context  ↔  description      solution  ↔  procedure      consequences  ↔  Done when
@@ -804,7 +804,7 @@ context  ↔  description      solution  ↔  procedure      consequences  ↔  
 | --- | --- |
 | **Guardrail** 是 skill 的行为模式（p.71） | **"绝对不能发生"的事该是 hook 或权限，不是 skill 里的文字**——正文会被挤掉、被稀释、被覆盖；**hook 不经过模型** |
 | 两个攻击面：散文 + 脚本（p.55） | **第三个：被复制的样例**。Agent 把 example 当可信参考抄进输出，而它既非指令性散文也非可执行脚本，**两个审查视角都可能漏掉** |
-| 确定性步骤交给脚本（p.62） | **是最佳实践，不是现状**——市场上 **89.5%** 的 skill 没有脚本（Cao et al. 2026） |
+| 确定性步骤交给脚本（p.62） | **是最佳实践，不是现状**——市场上 **89.5%** 的 skill 没有脚本（Cao et al. 2026；✏️ 勘误 W4 #14：按脚本 + 库 + 应用合计 13.6% 含可执行代码，即约 **86%** 不含代码） |
 | **渐进披露是 "the load-bearing idea"**（p.19） | ⚠️ **SRA 实测：六个模型上全不如一次性 LLM Selection**，最大落后 **10.7pp**。省下的 κ 被糟糕的加载决策吃掉了 |
 | `VoL = p·g − κ`（p.31） | **SRA 实测 need-awareness Δ = +0.1pp**——**模型基本不看 g**。加载规则是**规范性模型**，不是行为描述 |
 | "a rich repertoire is a durable enabler"（p.43） | **SkillsBench：2–3 个 skill 胜过 4+ 个；自生成 skill −1.3 分，精选 +16.2 分** |
@@ -826,6 +826,8 @@ context  ↔  description      solution  ↔  procedure      consequences  ↔  
 本 deck p.46 把 Reflexion / ExpeL 收在"**一个 skill 改写自己正文的种子**"。
 
 **SkillsBench 测出来：自生成 skill −1.3 分。不是收益小，是负的。**
+
+> ✏️ 勘误 W3 版本的 SkillsBench 数字：精选 skill 让任务成功率 **33.9% → 50.5%**；自生成 skill 在测过的三种配置上 **降 8–12 分**；给 1–3 个 skill 的任务涨 **18–19 分**、4 个以上涨 **10 分**；首版里带 skill 的 Haiku 4.5（27.7%）胜过不带的 Opus 4.5（22.0%）。笔记里的 +16.2 / −1.3 可能出自论文的另一个版本或口径，方向一致，引用时以勘误为准。
 
 这不否定 Reflexion 的机制（它测的是单任务内的反思重试，不是生成可复用 skill），**但给"让 agent 自己写技能库"放了一个硬路标**——而那正是本 deck 附录 GEPA / ACE 的方向。
 
