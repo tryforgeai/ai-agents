@@ -86,7 +86,7 @@ escalates to a human       上报给人
   > *"**The sea does not obey him; he reads it and corrects.**"*
   > *"We are not breaking a horse. **We are learning to steer.**"*
 
-> ⭐ 讲师明说**不喜欢 harness 这个词**（它来自马具 = 驯服动物），舵手更贴切：**放弃"控制模型内部"，转而"读取并修正"。**
+> ⭐ 讲师明说**不喜欢 harness 这个词**（他以为它来自马具 = 驯服动物（✏️ 勘误 W1 #4：词源其实相反——harness 来自古法语 *harneis*「武器、装备」，可能源自古诺尔斯语 \*hernest「军需」；本义是盔甲和战马的装具，即「装备好、让它能上路」，拉牲口的意思 14 世纪初才有，比喻义「驾驭」到 1690 年代前后）），舵手更贴切：**放弃"控制模型内部"，转而"读取并修正"。**
 
 ### 4. verifier（p.57）
 
@@ -331,7 +331,7 @@ Deference  : 哪些动作必须人批？（列出不可逆动作清单）
 
 ### 待核实
 
-- [ ] p.43「2026 年某 harnessed agent 跑了一百万步零错误」—— 哪个系统？
+- [x] p.43「某 harnessed agent 跑了一百万步零错误」—— ✏️ 已查到（勘误 W1 #10）：Meyerson et al., *Solving a Million-Step LLM Task with Zero Errors*，`arXiv:2511.09030`，**2025-11-12**（Cognizant AI Lab + UT Austin）。方法 **MAKER**，任务是 20 盘汉诺塔，共 **1,048,575 步零错误**，用小的非推理模型。幻灯片写的 2026 有误。
 - [ ] p.29「first controlled studies of when a team beats a soloist」—— 具体哪些研究？
 - [ ] p.28「MCP SDK 每月五亿次下载」—— 口径？
 - [ ] `verify_step` / `verify_final` 的实现：**它们靠什么信号判断成功？**（这决定了是否真独立于 token）

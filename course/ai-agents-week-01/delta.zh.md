@@ -21,9 +21,12 @@ Week 00 讲了 harness，但没拆过 harness **内部**的这两种扩展方式
 
 判据：`SKILL.md + 脚本 + 编号步骤 + 一次 MCP 调用` → 这是 **Skill**，不是 Agent。
 
-### 1.2 ⭐ 记忆的三分法（Week 00 明确缺失，今天补上）
+### 1.2 ⭐ 记忆的四分法（CoALA；Week 00 明确缺失，今天补上）
 
-Week 00 把「memory 架构」列在**未展开缺口**里。今天用认知心理学经典三分（Tulving）给 agent 记忆分层：
+Week 00 把「memory 架构」列在**未展开缺口**里。今天用 CoALA 的记忆分类给 agent 记忆分层。
+
+> ✏️ 勘误 W1 #8：课上讲的是**四种**记忆，分类出自 CoALA（Sumers, Yao, Narasimhan, Griffiths, `2309.02427`）：**working**（课上叫 operational memory = 上下文窗口，来自 Baddeley & Hitch 1974）+ episodic + semantic + procedural。Tulving（1972）只区分了 episodic 和 semantic。下表只列了长期记忆的三种。
+
 
 | | 内容 | 讲师的例子 | 特性 |
 | --- | --- | --- | --- |
@@ -89,7 +92,7 @@ Week 00 把「memory 架构」列在**未展开缺口**里。今天用认知心�
 
 **⚠️ 我对上面几条的核查**
 
-- 约束 3「脚本拿不到 MCP 连接」——在 Claude Code / Cowork 这套 skill 机制里**成立**：脚本是 bash 起的子进程，不在 MCP client 会话里。但严格说这是**架构约定而非物理限制**——脚本自己带凭证去实现一个 MCP client 也能连，只是那样就绕开了 Claude 的审批与审计，不该这么做。教学时说成"**边界是故意画的**"比说成"做不到"更准确。
+- 约束 3「脚本拿不到 MCP 连接」——在 Claude Code / Cowork 这套 skill 机制里**成立**：脚本是 bash 起的子进程，不在 MCP client 会话里。但严格说这是**架构约定而非物理限制**——脚本自己带凭证去实现一个 MCP client 也能连，只是那样就绕开了 Claude 的审批与审计，不该这么做。（✏️ 勘误 W5 #3 的观点相反：skill 的脚本里带几行 MCP client 代码是**正当做法**——模型看不到工具定义，能省掉每轮的上下文开销；代价是审批和审计要另外设计。）教学时说成"**边界是故意画的**"比说成"做不到"更准确。
 - 「只加载 SKILL.md（几百 token）」——对，这是 progressive disclosure：描述常驻、正文按需、脚本只在执行时读。
 - 步骤数 7–8、10 分钟 —— 这是**经验值**，无出处，当作 demo 手感即可。
 

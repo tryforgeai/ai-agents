@@ -9,7 +9,7 @@
 
 ## TL;DR
 
-Agent memory splits three ways, borrowing a distinction from cognitive psychology:
+Agent memory splits four ways, following CoALA (Sumers et al., `2309.02427`): **working** memory (the context window — called "operational memory" in class; from Baddeley & Hitch 1974) plus the three long-term kinds below. *(Corrected per Week 1 errata #8: earlier versions said "three ways" and credited Tulving, who distinguished only episodic and semantic.)*
 
 | | What it holds | Example | Character |
 | --- | --- | --- | --- |

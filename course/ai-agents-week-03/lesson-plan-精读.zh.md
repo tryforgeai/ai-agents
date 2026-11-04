@@ -734,7 +734,7 @@ skill 是一个文件夹，**所以它天然继承版本控制。保留一个 ca
 
 ## Act V · Design Patterns（p.23–25）
 
-**一个模式是压缩过的经验。** 词来自建筑师 Christopher Alexander（1979, *The Timeless Way of Building*）：一个有名字、可复用的解法，由 **context、problem、forces in tension、solution、consequences——你得到什么，你付出什么**来描述。
+**一个模式是压缩过的经验。** 词来自建筑师 Christopher Alexander（模式目录在 *A Pattern Language*，1977；理论在 *The Timeless Way of Building*，1979）：一个有名字、可复用的解法，由 **context、problem、forces in tension、solution、consequences——你得到什么，你付出什么**来描述。（✏️ 勘误 W4 #13：Alexander 的模式只写 context、problem、forces 和用 "Therefore:" 引出的 solution；**consequences 这一栏来自四人帮**（Gamma, Helm, Johnson, Vlissides 1994）的模板，五段式是软件模式社区合成的。模式目录在 *A Pattern Language*（1977，253 个模式），*The Timeless Way of Building*（1979）讲背后的理论）
 
 > **Learn to recognise the shape; do not memorise the rule. 一个健康的 skill 通常同时显出好几个模式。**
 

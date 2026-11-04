@@ -1,56 +1,65 @@
-# Week07 听课速览（课前版）
+# Week 07 听课速览（2026-11-01）
 
-来源：[lesson plan](uploads/fall-agents-week-7-lesson-plan.pdf)，2026-10-27 初稿，印刷 pp.1–13、25–27。整理于 2026-10-29。下面是课程计划，不是课堂实录。
+**Gradient Descent for Sentences — the Workshop, the Frontier and the Tether**（讲义 32 页，Asif Qamar，first draft 2026-10-27）
+原文：[uploads/fall-agents-week-7-lesson-plan.pdf](uploads/fall-agents-week-7-lesson-plan.pdf) · 📖 逐节精读：[lesson-plan-精读.zh.md](lesson-plan-精读.zh.md)
 
-## 本周在解决什么
+> **A prompt is a parameter — a point in a discrete space with no gradient — and prompt optimization is search over that space, steered by a pseudo-gradient written in words. The optimizer is only ever as good as the metric it is handed.**
 
-前几周是人手写 prompt、skill、tool description。本周把这些文本当参数，交给搜索循环改写；模型权重保持不变。最重要的变化是先回答“什么叫变好”，再决定如何让机器优化。
+## 时间线（五个 cycle；只有 14:30 和 19:30 固定）
 
-三个抓手：数据决定机器学到什么；metric 决定它追什么；tether 把不能改的规则锁住。先拆清多个问题，再优化，避免一个巨大 prompt 把不同任务的错误混在一起。
+| 时间 | 环节 | 内容 | 形式 |
+| --- | --- | --- | --- |
+| 11:00–11:05 | Orientation · 上周 Owl | W6 五行 | Deck |
+| 11:05–11:25 | Orientation · 小测 | *Six Questions, One Trap* | Quiz |
+| 11:25–12:00 | Orientation · 故事 | field notes + 六条 headlines + 那一句 | Deck |
+| 12:00–13:35 | **Harrison's Workshop** | core：**Bench 2, 4, 7, 9, 10**；~12:30 午饭；Bench 10 等讲师；**13:35 前导出 Markdown** | 两人一组 |
+| 13:35–13:45 | **Steam Drill** | Bench 11，全场一屏 | 全体 |
+| 13:45–14:30 | **Genie's Exam** | core：**Door A1, A3, B1, C1** | 两人一组 |
+| 14:30–17:00 | **Deep Dive** | debrief 揭晓 → 形式化 → GEPA → 纪律 → … | Deck |
+| 17:00–18:00 | 🆕 **Guest lecture** | 讲义里没有，课上 deck 新增（主题待记） | 讲座 |
+| 18:00– | **Deep dive, continued** | 接着讲 → field notes → 优化器配 artifact → 综合 | Deck |
+| 19:30–19:50 | **Owl of Minerva** | 五行（先写自己的） | Deck |
+| 20:00– | Speakeasy | 可选：code walk / paper walk | Talk |
 
-## 时间安排（照录课程时间，时区以 portal 为准）
+> ⚠️ **课上实际议程（deck 首页，11:00 截图）和讲义不同**：Orientation 11:00 → Experientials 12:00 → Deep dive 14:30 → **Guest lecture 17:00** → **Deep dive, continued 18:00** → Owl of Minerva。讲义 p.5 没有 guest lecture，deep dive 被切成两段，所以 deep dive 的尾部（优化器配 artifact、综合）更可能被压缩，讲不到的部分看 Reservoir。
+> Parking Board：deck 右上角的 "Park a question" 票，用手机扫 QR（局域网地址 10.0.21.16）；11:00 时还是空的（"Nothing parked yet."）。
 
-| 时间 | 内容 | 带走什么 |
-| --- | --- | --- |
-| 11:00–11:05 | Week06 Owl 复习 | 上周五句主线 |
-| 11:05–11:25 | Six Questions, One Trap | 回忆检查，不是预先知道题目 |
-| 11:25–12:00 | 企业案例、六个 headlines | 参数、离散搜索、指标、专家、多轮改进、何时不优化 |
-| 12:00–13:35 | Harrison’s Workshop，两人一组 | Bench 2/4/7/9/10；约 12:30 边做边吃；结束前导出 |
-| 13:35–13:45 | Steam Drill | 全班看 Bench 11，不需要自己操作 |
-| 13:45–14:30 | Genie’s Exam，同一搭档 | A1/A3/B1/C1；审视评分究竟奖励了什么 |
-| 14:30 起 | Deep Dive | 体验复盘、形式化、GEPA、评估纪律、方法选择 |
-| 19:30–19:50 | Owl of Minerva | 老师揭晓前先写自己的五句话 |
-| 20:00 后 | 可选 Speakeasy | Parking Board、代码或论文 walkthrough |
+## 11:00 复述题 —— 先默写
 
-本周日推定为 2026-11-01；当天洛杉矶结束夏令时，跨时区课程时间请以 portal 的当地时间显示为准，不沿用固定 UTC 偏移。
+Tool label 必须告诉模型的五件事：
 
-## 课前材料与安装
+<details><summary>答案</summary>
 
-- 两套 kit：`harrisons-workshop.zip`、`genies-exam.zip`。各自独立目录，启动命令和 OpenRouter 配置看各 README；lesson plan 没给具体命令，当前不编造。
-- 没 key 也能看预录运行；自写修改触发小规模 live run 才需配置 key。
-- 只验证两个首页能打开，不提前打开 bench 或 door；本次没有下载或运行它们。
-- 讲义明确周日无需额外安装 Deep Dive 的代码环境，实际运行在周二/周四。
-- 补拿 `fall-agents-week-7-reservoir.pdf`、`workshop-card.pdf`、`exam-card.pdf`。
-- Week06 kit 在 10 月 26 日前下载的应更新；讲义说 Door 1 的验证补了“提出 store credit 后等待用户回复”的情况。
-- No Castle Without Walls 是上周自学材料，本周 TA session 会澄清。
+description（whether）· schema（how）· error（what next）· contract（what a retry does）· 返回值（第五面）
 
-## 实验纪律
+</details>
 
-这是讲义规定的学习流程：修改由人手写；chatbot 可以点评，不代写下一版实验 prompt。Workshop 不显示分数、无团队排名；保留失败版本，不整理掉历史。Bench 10 等老师信号，Bench 11 和 Exam answer 不提前解锁。
+## 课前检查
 
-Workshop 每站：先预测 → 跑 seed → 读完输出 → 口头说为什么更差/更好 → 按本 bench 要求操作 → 记录。
+- [ ] `harrisons-workshop.zip`、`genies-exam.zip` 各解压到独立文件夹，按 README 一条命令能打开
+- [ ] OpenRouter key 放好（无 key 也能回放预录输出）；投影时别露 key
+- [ ] **不要提前打开任何 bench 或 door**
+- [ ] 拿 `workshop-card.pdf`、`exam-card.pdf`
+- [ ] Bench 2 的最终 prompt 要保留（Bench 10 要用）
 
-Exam 每门：读任务与评分规则 → 看优化器已有的 prompt/输出 → 判断分数是否值得信任 → 人工选或写一项改动 → 看下一轮。
+## 六条 headlines
 
-**14:30 带回两句话：**
+1. **A prompt is a parameter** —— "Take a deep breath…" 比 "Let's think step by step" 高 ~8 点（OPRO）
+2. **You cannot do calculus on a sentence** —— 牛和马之间没有光滑路径（unicow）；梯度用文字写
+3. **The optimizer reads your metric literally** —— Literal Genie 有了搜索引擎；introns
+4. **Keep the specialists** —— 只有它答对 example 17 的 prompt 不能扔
+5. **Small steps, a memory of failure, a gate** —— Harrison H1→H4
+6. **Know when not to optimize** —— 72 次运行 49% 低于 zero-shot；judge 无 rubric 46.4%，有 rubric 73.8%
 
-1. 我们如何决定“更好”？
-2. 我们的考试实际上奖励了什么？
+## Field notes 三课（= Genie's Exam 三翼）
 
-## 课前回忆题（自拟，不是老师 quiz 原题）
+前提：**resolution gap**，几十种风险塞在一个 prompt 里，其实是很多个问题
 
-1. Week06 的 description 和 server-side 检查各能保证什么？
-2. 为什么模型拒绝读 `.env` 不等于脱敏函数经过测试？
-3. 一个 prompt 分数从 0.70 到 0.75，至少还需哪些信息才能说变好了？
-4. 数据错误、评分错误、能力不足，分别应该修哪里？
-5. 自动改写退款 skill 时，哪些规则不能交给搜索过程改？
+- **A · The thought is the metric** —— 每种风险一个 F_β 旋钮
+- **B · The grunt work is the data** —— 一条错 demo = 一条错误教训；one blessed set
+- **C · The insurance is the tether** —— 规则和定义不可编辑；"A regulator does not grade on a curve"
+
+## 两个带回 debrief 的问题
+
+- Workshop：***How did you decide "better"?***
+- Exam：***What did your exam actually reward?***

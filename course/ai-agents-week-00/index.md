@@ -16,7 +16,7 @@
 | ⭐⭐ [`summary.zh.md`](summary.zh.md) | **总结**（先看这个）：按概念组织 —— 四个定义 / 两个方向的算术 / 四条 pipeline / 四条停止规则 / 失败模式图鉴 / 可用检查表 / 金句速查 |
 | 📤 [`summary.en.md`](summary.en.md) | **英文版 · 给团队分享用** —— 内部备忘录形式，知识分享取向，不含个人待办 |
 | [`notes.zh.md`](notes.zh.md) | **现场笔记**：按 ACT I–VII 七幕、逐页记录（2900 行） |
-| ⭐ [`ref-harness-engineering.zh.md`](ref-harness-engineering.zh.md) | **参考阅读**：Addy Osmani《Agent Harness Engineering》精读 —— p.21 那句话的出处与完整展开 |
+| ⭐ [`ref-harness-engineering.zh.md`](ref-harness-engineering.zh.md) | **参考阅读**：Addy Osmani《Agent Harness Engineering》精读 —— p.21 那句话的出处与完整展开（Top-30 → Top-5 的数据出自 LangChain，见勘误 W1 #6） |
 | [`avaloka-mapping.zh.md`](avaloka-mapping.zh.md) | Avaloka 映射占位：Agent Capability / Evidence·Memory·Tool·Eval / 落地清单 |
 | [`uploads/slide-01-title.png`](uploads/slide-01-title.png) | p.1 标题页截图 |
 | [`uploads/slide-02-journey.png`](uploads/slide-02-journey.png) | p.2 七幕路线图 |
