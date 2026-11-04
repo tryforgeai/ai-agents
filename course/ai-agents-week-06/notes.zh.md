@@ -1968,3 +1968,8 @@ KV connector API
 - FinePrint 的报错已经大多点名了工具（"Call get_order to see its items"），符合 p.41；但 `"tell the customer to retry later"` 没说重试是否安全
 - p.110：FinePrint 的 `requirements.txt` 是 `fastmcp>=4.1`，**没钉 `mcp`**；至少钉 `mcp>=2.2.0`，课上统一用 `mcp==2.3.0`
 - p.100：如果 W3 的日历 skill 要调 FinePrint 的工具，SKILL.md 里要写**全限定名**
+
+
+## 追加阅读：2026-10-29 Google ADK MCP OAuth
+
+[独立代码讲解与流程笔记](google-adk-mcp-oauth.zh.md)：包括 server/client、GoogleProvider、token.sub、订单授权边界、PKCE、两段回调与两种 token。仅完成源码阅读，尚未实测。

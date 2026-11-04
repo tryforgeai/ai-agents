@@ -110,3 +110,8 @@
 ## 5. 还没讲到的（今晚）
 
 ~~Act IV 协议传记~~（18:21 讲到 Quiz 4）· ~~Act V stateless turn~~（18:23–18:50 已讲）· ~~Act VI~~（18:52–18:54）· Act VII（18:55 进行中）· ~~Act VIII 两条轴~~（19:13–19:25）· Act IX（19:27 进行中）· ~~Act X~~（19:37 进行中） · ~~Act XI~~（19:53 进行中） · 19:15 作业
+
+
+## 2026-10-29 · OAuth Lab 源码学习（非课堂实测）
+
+已整理 [Google ADK MCP OAuth 笔记](google-adk-mcp-oauth.zh.md)。新理解：身份来自服务端认证上下文；ADK USER_ID 仅管理会话；公开 HTTP 与受保护 MCP 在同一服务中共存；认证不自动等于购买确认。运行与认证结果仍待记录。

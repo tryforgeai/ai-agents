@@ -67,3 +67,8 @@ Skills（W3–W4）→ Lab 揭晓 + Tools + Inference（W5）→ **Toolcraft II�
 
 
 下一周：[Week07 · 自动提示词优化预习与实验记录](../ai-agents-week-07/index.md)（11 月 1 日课前准备）。
+
+
+## 10 月 29 日 · Google ADK MCP OAuth
+
+[OAuth 学习笔记](google-adk-mcp-oauth.zh.md)：模拟商店架构、两个主要代码文件、身份绑定、公开 HTTP 与受保护 MCP、两种 token 和两个回调、运行准备、局限与测试清单。状态：源码阅读完成，尚未运行。

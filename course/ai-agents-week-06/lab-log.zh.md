@@ -380,3 +380,14 @@ def _redact_value(value):
 - [ ] C：直接调用 `sanitize_tool_output()`，验证嵌套结果中的假密钥替换为 `[REDACTED]`，正常文本保留。模型拒绝读取不能替代这一验证。
 
 本节没有把上述待测项标为通过，也没有修改 lab 源码。
+
+
+---
+
+## 2026-10-29 · Google ADK MCP OAuth（源码阅读）
+
+详见 [完整学习笔记](google-adk-mcp-oauth.zh.md)。已阅读 README、Flow、Google Console setup、server.py 和 agent.py；本次没有启动服务器、登录账户或执行交易。
+
+重点：`GET /products` 是公开 HTTP route；三种订单操作走 OAuth 保护的 MCP。用户身份来自服务端 token 的 sub，不是 ADK USER_ID 或模型参数。退款先限定当前用户订单集合，再查 transaction_id。两种 token 和两个 callback 的流程属于项目文档说明，待实测。
+
+待验证：公开访问、未认证拒绝、首次授权、购买/查询/退款、重复退款、跨账户隔离、错误 token 拒绝和重启清空。具体命令和证据清单在完整笔记中；不能把源码预期记为测试通过。
