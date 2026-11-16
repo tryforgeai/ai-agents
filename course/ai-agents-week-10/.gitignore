@@ -1,0 +1,5 @@
+# Local course source material, experiments, and exported traces
+/uploads/*
+/papers/*
+/exports/*
+/kits/*

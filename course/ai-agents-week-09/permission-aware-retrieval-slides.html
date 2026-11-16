@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Permission-Aware Retrieval</title>
+<style>
+:root{
+  --bg:#f7f6f2; --fg:#1d1f23; --muted:#5d636d; --line:#d9d6cd;
+  --accent:#c2553f; --good:#2f7d5b; --bad:#b33a3a; --card:#ffffff; --code:#efece5;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#15171b; --fg:#ecebe6; --muted:#a2a7b0; --line:#30343b;
+    --accent:#e8806a; --good:#5cc49a; --bad:#ef6f6f; --card:#1e2127; --code:#262a31; }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font:18px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;overflow:hidden}
+.deck{height:100vh;position:relative}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:6vh 8vw;max-width:1200px;margin:0 auto}
+.slide.active{display:flex}
+.kicker{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem}
+h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;margin-bottom:1.2rem}
+h2{font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.15;margin-bottom:1.4rem}
+.lead{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--muted);max-width:52ch}
+.what{font-size:clamp(1.05rem,2vw,1.3rem);margin-bottom:1.2rem;max-width:60ch}
+.why{border-left:4px solid var(--accent);padding:.6rem 1rem;background:var(--card);border-radius:0 8px 8px 0;max-width:64ch;color:var(--fg)}
+.why b{color:var(--accent)}
+.why ul{margin:.3rem 0 0 1.1rem}
+code{font-family:ui-monospace,Menlo,monospace;background:var(--code);padding:.05em .35em;border-radius:4px;font-size:.9em}
+.viz{margin:1.4rem 0;display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center}
+.box{border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:.6rem .9rem;font-size:.95rem}
+.box.ok{border-color:var(--good)} .box.no{border-color:var(--bad);color:var(--bad)}
+.arrow{color:var(--muted);font-size:1.3rem}
+.dots{display:flex;gap:6px}
+.dot{width:22px;height:22px;border-radius:4px;background:var(--good)}
+.dot.x{background:var(--bad);opacity:.35}
+.label{font-size:.85rem;color:var(--muted);margin-top:.3rem}
+pre{background:var(--code);border-radius:8px;padding:.8rem 1rem;font:14px/1.45 ui-monospace,Menlo,monospace;overflow:auto;max-width:100%}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;max-width:760px}
+.grid .box{text-align:center}
+.timeline{display:flex;align-items:center;gap:0;margin:1.2rem 0;flex-wrap:wrap}
+.t{text-align:center;min-width:120px}
+.t .tm{font-weight:700;font-size:1.3rem}
+.bar{flex:1;min-width:30px;height:3px;background:var(--line)}
+.bar.gap{background:var(--bad)}
+.nav{position:fixed;bottom:16px;right:16px;display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.85rem}
+.nav button{background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:.35rem .7rem;font-size:1rem;cursor:pointer}
+.refs ul{margin-left:1.2rem;font-size:.92rem;max-width:80ch}
+.refs li{margin:.2rem 0}
+.refs a{color:var(--accent)}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);transition:width .2s}
+@media (max-width:640px){
+  .slide{padding:5vh 16px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  pre{font-size:12px}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+<section class="slide active">
+  <div class="kicker">Enterprise RAG</div>
+  <h1>Permission-Aware Retrieval</h1>
+  <p class="lead">Enforce permissions with deterministic infrastructure at the moment of retrieval, not by asking the model to behave afterwards.</p>
+  <p class="label" style="margin-top:2rem">8 points · what, then why · use ← → to navigate</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">1 / 8</div>
+  <h2>Authorization is a hard constraint, not a score</h2>
+  <p class="what">Compute the allowed set <code>D_u</code> first, then search only inside it.</p>
+  <pre>D_u = { d ∈ D : Authorized(u, d) = 1 }
+d*  = argmax sim(q, d)   over d ∈ D_u</pre>
+  <div class="why"><b>Why:</b> as a score term, a relevant-enough confidential doc can outweigh its missing permission. Similarity measures "how alike", never "may you see this". The better the retriever, the more precisely it leaks.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">2 / 8</div>
+  <h2>Prevent, don't suppress</h2>
+  <div class="viz">
+    <div><div class="box ok">Filter at retrieval → secret never in prompt</div><div class="label">Prevention · a control</div></div>
+    <div><div class="box no">Secret in prompt + "please don't reveal"</div><div class="label">Suppression · a request</div></div>
+  </div>
+  <div class="why"><b>Why:</b> once text is in the prompt, "don't reveal it" is one prompt injection away from the output. Infrastructure filtering is deterministic; the model never gets the chance.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">3 / 8</div>
+  <h2>Pre-filter, never post-filter</h2>
+  <div class="viz">
+    <div><div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><div class="label">Pre-filter: 10 allowed results</div></div>
+    <div><div class="dots"><span class="dot"></span><span class="dot x"></span><span class="dot x"></span><span class="dot"></span><span class="dot x"></span><span class="dot x"></span><span class="dot x"></span><span class="dot x"></span><span class="dot x"></span><span class="dot x"></span></div><div class="label">Post-filter: top-10 → silently top-2</div></div>
+  </div>
+  <div class="why"><b>Why:</b> searching top-10 then deleting 8 leaves 2. Recall drops and nobody notices.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">4 / 8</div>
+  <h2>A normalized security descriptor on every chunk</h2>
+  <pre>{ "tenant": "acme", "classification": "confidential",
+  "allow_groups": ["finance","executives"], "deny_users": [],
+  "regions": ["US"], "acl_version": 17 }</pre>
+  <div class="why"><b>Why:</b> retrieval happens per chunk. Chunking keeps content but drops permissions, and an index can't filter in five source-system dialects at once.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">5 / 8</div>
+  <h2>Missing = deny · deny beats allow · versioned</h2>
+  <div class="why"><b>Why:</b>
+    <ul>
+      <li>Missing metadata is where systems fail open; uncertainty must default to deny.</li>
+      <li>An explicit deny (e.g. conflict of interest) must not be overridden by a group grant.</li>
+      <li>After an incident, replay the decision as it was, not from today's state.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">6 / 8</div>
+  <h2>Sync entitlements by event, not TTL</h2>
+  <div class="timeline">
+    <div class="t"><div class="tm">10:01</div><div class="label">doc indexed</div></div>
+    <div class="bar"></div>
+    <div class="t"><div class="tm">10:05</div><div class="label">permission revoked</div></div>
+    <div class="bar gap"></div>
+    <div class="t"><div class="tm" style="color:var(--bad)">10:06</div><div class="label">query → leak</div></div>
+  </div>
+  <div class="why"><b>Why:</b> content rarely changes; permissions change constantly (joiners, movers, leavers). The sync gap is the leak window. Azure AI Search has the same gap.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">7 / 8</div>
+  <h2>Under the hood: bitmaps, then search inside</h2>
+  <pre>allowed = B[tenant] ∩ (B[user] ∪ B[groups…]) ∖ B[deny] ∩ B[class] ∩ B[region]</pre>
+  <div class="viz">
+    <div class="box">small set → brute force</div>
+    <div class="box">large set → bitmap-aware HNSW</div>
+    <div class="box no">1–10% → graph breaks: partition / ACORN</div>
+  </div>
+  <div class="why"><b>Why:</b> a permission change only updates bitmaps, with no re-embedding, so sync is fast. Low selectivity disconnects the graph, so benchmark recall there.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">8 / 8</div>
+  <h2>Cover all six leakage surfaces</h2>
+  <div class="grid">
+    <div class="box">Retrieval</div><div class="box">Context</div><div class="box">Answer</div>
+    <div class="box no">Citations / metadata</div><div class="box no">Cache</div><div class="box no">Logs / traces</div>
+  </div>
+  <div class="why" style="margin-top:1.2rem"><b>Why:</b> filenames, cache hits and traces are side channels around content filtering. Even "I found X.pdf but you can't open it" discloses X.pdf exists.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Takeaway</div>
+  <h1>Filter before you search.<br>Never ask the model to keep a secret.</h1>
+  <p class="lead">References on the next slide →</p>
+</section>
+
+<section class="slide refs">
+  <div class="kicker">References</div>
+  <h2>Sources</h2>
+  <div class="label" style="margin-bottom:.3rem">Microsoft documentation</div>
+  <ul>
+    <li><a href="https://learn.microsoft.com/en-us/azure/search/search-document-level-access-overview" target="_blank" rel="noopener">Document-level access control in Azure AI Search</a></li>
+    <li><a href="https://docs.azure.cn/en-us/search/search-security-trimming-for-azure-search" target="_blank" rel="noopener">Security filters for trimming results in Azure AI Search</a></li>
+    <li><a href="https://techcommunity.microsoft.com/blog/azure-ai-services-blog/-/4418584" target="_blank" rel="noopener">Azure AI Search document-level access announcement</a></li>
+    <li><a href="https://devblogs.microsoft.com/ise/?p=16628" target="_blank" rel="noopener">Microsoft ISE devblog on SharePoint permission sync, Apr 2026</a></li>
+  </ul>
+  <div class="label" style="margin:.8rem 0 .3rem">Papers and standards</div>
+  <ul>
+    <li>Pang et al., <i>Zanzibar: Google's Consistent, Global Authorization System</i>, USENIX ATC 2019</li>
+    <li>Sandhu et al., <i>Role-Based Access Control Models</i>, IEEE Computer 1996</li>
+    <li>Hu et al., <i>Guide to Attribute Based Access Control</i>, NIST SP 800-162, 2014</li>
+    <li>Gollapudi et al., <i>Filtered-DiskANN</i>, WWW 2023</li>
+    <li>Patel et al., <i>ACORN: Performant and Predicate-Agnostic Search Over Vector Embeddings and Structured Data</i>, SIGMOD 2024</li>
+  </ul>
+  <div class="label" style="margin:.8rem 0 .3rem">Course material</div>
+  <ul>
+    <li>LLM and Enterprise RAG Bootcamp — Week 09 Module 5 (Enterprise Entitlement-RAG), Week 06 (Guardrails), Week 10 (Access control)</li>
+  </ul>
+</section>
+
+</div>
+<div class="nav"><button id="prev" aria-label="Previous">←</button><span id="count"></span><button id="next" aria-label="Next">→</button></div>
+<script>
+const s=[...document.querySelectorAll('.slide')];let i=0;
+const show=n=>{i=Math.max(0,Math.min(s.length-1,n));s.forEach((x,k)=>x.classList.toggle('active',k===i));
+document.getElementById('count').textContent=(i+1)+' / '+s.length;
+document.getElementById('progress').style.width=((i+1)/s.length*100)+'%';};
+document.getElementById('prev').onclick=()=>show(i-1);
+document.getElementById('next').onclick=()=>show(i+1);
+document.addEventListener('keydown',e=>{if(['ArrowRight',' ','PageDown'].includes(e.key))show(i+1);if(['ArrowLeft','PageUp'].includes(e.key))show(i-1);});
+let x0=null;document.addEventListener('touchstart',e=>x0=e.touches[0].clientX);
+document.addEventListener('touchend',e=>{if(x0===null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)show(i+(d<0?1:-1));x0=null;});
+show(0);
+</script>
+</body>
+</html>
